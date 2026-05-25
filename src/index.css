@@ -18,7 +18,7 @@
   body {
     margin: 0;
     min-width: 320px;
-    background: #f7f8fb;
+    background: #0f1115;
     font-family: var(--font-sans);
     color: #172033;
     letter-spacing: 0;
@@ -42,7 +42,7 @@
   }
 
   ::selection {
-    background: #d9e5ff;
-    color: #0f2f7a;
+    background: #263247;
+    color: #f4f7fb;
   }
 }

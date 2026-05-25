@@ -478,8 +478,8 @@ function App() {
     threads.find((thread) => thread.id === activeThreadId) ?? threads[0]
 
   return (
-    <main className="min-h-screen bg-[#0b1020] text-[#172033]">
-      <div className="flex min-h-screen w-full flex-col overflow-hidden bg-[#0b1020]">
+    <main className="min-h-screen bg-[#0f1115] text-[#172033]">
+      <div className="flex min-h-screen w-full flex-col overflow-hidden bg-[#0f1115]">
         <TopBar />
         <IntroPanel />
         <ThreadWorkspace
@@ -495,18 +495,18 @@ function App() {
 
 function TopBar() {
   return (
-    <header className="flex items-center justify-between border-b border-white/10 bg-[#111827] px-4 py-3">
+    <header className="flex items-center justify-between border-b border-white/10 bg-[#15171c] px-4 py-3">
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-1.5" aria-hidden="true">
           <span className="h-2.5 w-2.5 rounded-full bg-[#ff6b6b]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#f5c542]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#20c997]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#58c98b]" />
         </div>
-        <span className="hidden font-mono text-xs font-semibold text-[#8fa1c1] sm:inline">
+        <span className="hidden font-mono text-xs font-semibold text-[#8d96a6] sm:inline">
           junho-kong.dx
         </span>
       </div>
-      <span className="font-mono text-xs font-semibold text-[#7184a6]">
+      <span className="font-mono text-xs font-semibold text-[#707988]">
         portfolio.workspace
       </span>
     </header>
@@ -515,10 +515,10 @@ function TopBar() {
 
 function IntroPanel() {
   return (
-    <section className="grid gap-6 border-b border-white/10 bg-[#0b1020] p-5 sm:p-6 lg:grid-cols-[minmax(0,0.96fr)_minmax(22rem,1fr)] lg:p-8">
+    <section className="grid gap-6 border-b border-white/10 bg-[#0f1115] p-5 sm:p-6 lg:grid-cols-[minmax(0,0.96fr)_minmax(22rem,1fr)] lg:p-8">
       <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
         <img
-          className="h-28 w-28 rounded-full border-4 border-[#18233a] object-cover shadow-xl shadow-black/30 ring-1 ring-white/20 sm:h-32 sm:w-32"
+          className="h-28 w-28 rounded-full border-4 border-[#1d2533] object-cover shadow-xl shadow-black/30 ring-1 ring-white/20 sm:h-32 sm:w-32"
           src={profilePhotoUrl}
           alt="Junho Kong profile portrait"
           width="128"
@@ -528,17 +528,17 @@ function IntroPanel() {
           <h1 className="whitespace-nowrap text-4xl font-semibold leading-none text-white sm:text-5xl">
             Junho Kong
           </h1>
-          <p className="mt-3 text-lg font-semibold leading-7 text-[#dbe7ff]">
+          <p className="mt-3 text-lg font-semibold leading-7 text-[#e8ebf0]">
             Developer Experience-oriented AI Platform Engineer
           </p>
-          <p className="mt-3 max-w-2xl text-base leading-7 text-[#9fb0cc]">
+          <p className="mt-3 max-w-2xl text-base leading-7 text-[#a2aab7]">
             I build practical developer experiences around frontier AI.
           </p>
         </div>
       </div>
 
-      <div className="rounded-lg border border-white/10 bg-[#111827] p-4">
-        <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#78f0c4]">
+      <div className="rounded-lg border border-white/10 bg-[#15171c] p-4">
+        <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#7bd88f]">
           active mission
         </p>
         <p className="mt-3 text-lg font-semibold leading-7 text-white">
@@ -552,7 +552,7 @@ function IntroPanel() {
             'Open-source AI Builder',
           ].map((item) => (
             <span
-              className="rounded-md border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm font-semibold text-[#dbe7ff]"
+              className="rounded-md border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm font-semibold text-[#e8ebf0]"
               key={item}
             >
               {item}
@@ -575,7 +575,7 @@ function ThreadWorkspace({
 }) {
   return (
     <section
-      className="grid min-h-[650px] flex-1 bg-[#0b1020] lg:grid-cols-[18rem_minmax(0,1fr)]"
+      className="grid min-h-[650px] flex-1 bg-[#0f1115] lg:grid-cols-[18rem_minmax(0,1fr)]"
       aria-label="Portfolio thread workspace"
     >
       <ThreadSidebar
@@ -595,10 +595,10 @@ function ThreadSidebar({
   onSelectThread: (threadId: string) => void
 }) {
   return (
-    <aside className="border-b border-white/10 bg-[#0f172a] lg:border-b-0 lg:border-r">
+    <aside className="border-b border-white/10 bg-[#101216] lg:border-b-0 lg:border-r">
       <div className="hidden p-4 lg:block">
         <QuickLinks />
-        <p className="mb-3 mt-5 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#7184a6]">
+        <p className="mb-3 mt-5 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#707988]">
           Threads
         </p>
         <div className="space-y-2">
@@ -640,7 +640,7 @@ function QuickLinks({ compact = false }: { compact?: boolean }) {
   return (
     <div>
       <p
-        className={`font-mono text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#7184a6] ${
+        className={`font-mono text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#707988] ${
           compact ? 'sr-only' : 'mb-3'
         }`}
       >
@@ -649,7 +649,7 @@ function QuickLinks({ compact = false }: { compact?: boolean }) {
       <div className={compact ? 'flex gap-2 overflow-x-auto' : 'space-y-2'}>
         {contactLinks.map((link) => (
           <a
-            className={`inline-flex items-center justify-between gap-3 rounded-md border border-white/10 bg-white/[0.03] text-sm font-semibold text-[#dbe7ff] transition hover:border-[#8bd7ff]/50 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#8bd7ff] ${
+            className={`inline-flex items-center justify-between gap-3 rounded-md border border-white/10 bg-white/[0.03] text-sm font-semibold text-[#e8ebf0] transition hover:border-[#6ea8ff]/50 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#6ea8ff] ${
               compact
                 ? 'min-w-max px-3 py-2'
                 : 'w-full px-3 py-2'
@@ -686,27 +686,27 @@ function ThreadButton({
   return (
     <button
       aria-pressed={isActive}
-      className={`group text-left transition focus:outline-none focus:ring-2 focus:ring-[#8bd7ff] ${
+      className={`group text-left transition focus:outline-none focus:ring-2 focus:ring-[#6ea8ff] ${
         compact
           ? 'min-w-[13.5rem] rounded-md border px-3 py-3'
           : 'w-full rounded-lg border p-3'
       } ${
         isActive
-          ? 'border-[#2f6bff]/70 bg-[#18233a] text-white'
-          : 'border-white/10 bg-white/[0.025] text-[#9fb0cc] hover:border-[#8bd7ff]/40 hover:bg-white/[0.05] hover:text-white'
+          ? 'border-[#4a7dff]/70 bg-[#1d2533] text-white'
+          : 'border-white/10 bg-white/[0.025] text-[#a2aab7] hover:border-[#6ea8ff]/40 hover:bg-white/[0.05] hover:text-white'
       }`}
       onClick={() => onSelectThread(thread.id)}
       type="button"
     >
       <span className="flex items-center gap-2">
-        <span className="font-mono text-[0.68rem] font-semibold text-[#78f0c4]">
+        <span className="font-mono text-[0.68rem] font-semibold text-[#7bd88f]">
           {String(index).padStart(2, '0')}
         </span>
         <Icon size={15} aria-hidden="true" />
         <span className="truncate text-sm font-semibold">{thread.title}</span>
       </span>
       {!compact ? (
-        <span className="mt-1 block truncate font-mono text-xs text-[#7184a6]">
+        <span className="mt-1 block truncate font-mono text-xs text-[#707988]">
           {thread.file}
         </span>
       ) : null}
@@ -716,13 +716,13 @@ function ThreadButton({
 
 function ThreadMain({ thread }: { thread: PortfolioThread }) {
   return (
-    <article className="min-w-0 bg-[#0b1020]">
-      <div className="border-b border-white/10 bg-[#0d1424] px-5 py-3">
+    <article className="min-w-0 bg-[#0f1115]">
+      <div className="border-b border-white/10 bg-[#12151a] px-5 py-3">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <span className="font-mono text-xs font-semibold text-[#8fa1c1]">
+          <span className="font-mono text-xs font-semibold text-[#8d96a6]">
             {thread.file}
           </span>
-          <span className="rounded-md border border-[#20c997]/40 bg-[#20c997]/10 px-2.5 py-1 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#78f0c4]">
+          <span className="rounded-md border border-[#58c98b]/40 bg-[#58c98b]/10 px-2.5 py-1 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#7bd88f]">
             {thread.status}
           </span>
         </div>
@@ -733,10 +733,10 @@ function ThreadMain({ thread }: { thread: PortfolioThread }) {
           <h2 className="text-3xl font-semibold leading-tight text-white sm:text-4xl">
             {thread.title}
           </h2>
-          <p className="mt-3 text-lg font-semibold leading-7 text-[#8bd7ff]">
+          <p className="mt-3 text-lg font-semibold leading-7 text-[#6ea8ff]">
             {thread.subtitle}
           </p>
-          <p className="mt-4 max-w-3xl text-base leading-7 text-[#c9d5ea]">
+          <p className="mt-4 max-w-3xl text-base leading-7 text-[#c6cbd3]">
             {thread.intro}
           </p>
         </div>
@@ -749,11 +749,11 @@ function ThreadMain({ thread }: { thread: PortfolioThread }) {
 
         {thread.id === 'activity' ? <ActivityEvidence /> : null}
 
-        <div className="rounded-lg border border-white/10 bg-[#111827] p-4">
+        <div className="rounded-lg border border-white/10 bg-[#15171c] p-4">
           <div className="flex flex-wrap gap-2">
             {thread.focus.map((item) => (
               <span
-                className="rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs font-semibold text-[#dbe7ff]"
+                className="rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs font-semibold text-[#e8ebf0]"
                 key={item}
               >
                 {item}
@@ -766,7 +766,7 @@ function ThreadMain({ thread }: { thread: PortfolioThread }) {
           <div className="flex flex-wrap gap-3">
             {thread.links.map((link) => (
               <a
-                className="inline-flex items-center gap-2 rounded-md bg-[#2f6bff] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#2558dd] focus:outline-none focus:ring-2 focus:ring-[#8bd7ff]"
+                className="inline-flex items-center gap-2 rounded-md bg-[#4a7dff] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#3a67db] focus:outline-none focus:ring-2 focus:ring-[#6ea8ff]"
                 href={link.href}
                 key={link.href}
                 target="_blank"
@@ -785,26 +785,26 @@ function ThreadMain({ thread }: { thread: PortfolioThread }) {
 
 function MessageBlock({ label, value }: { label: string; value: string }) {
   return (
-    <section className="rounded-lg border border-white/10 bg-[#111827] p-4">
-      <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#78f0c4]">
+    <section className="rounded-lg border border-white/10 bg-[#15171c] p-4">
+      <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#7bd88f]">
         {label}
       </p>
-      <p className="mt-3 text-base leading-7 text-[#dbe7ff]">{value}</p>
+      <p className="mt-3 text-base leading-7 text-[#e8ebf0]">{value}</p>
     </section>
   )
 }
 
 function ListBlock({ label, items }: { label: string; items: string[] }) {
   return (
-    <section className="rounded-lg border border-white/10 bg-[#111827] p-4">
-      <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#78f0c4]">
+    <section className="rounded-lg border border-white/10 bg-[#15171c] p-4">
+      <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#7bd88f]">
         {label}
       </p>
-      <ul className="mt-3 space-y-3 text-sm leading-6 text-[#c9d5ea]">
+      <ul className="mt-3 space-y-3 text-sm leading-6 text-[#c6cbd3]">
         {items.map((item) => (
           <li className="flex gap-3" key={item}>
             <span
-              className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#8bd7ff]"
+              className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#6ea8ff]"
               aria-hidden="true"
             />
             <span>{item}</span>
@@ -842,12 +842,12 @@ function ActivityGroup({
   activities: ActivityLink[]
 }) {
   return (
-    <div className="rounded-lg border border-white/10 bg-[#111827] p-4">
+    <div className="rounded-lg border border-white/10 bg-[#15171c] p-4">
       <h3 className="text-lg font-semibold text-white">{title}</h3>
       <div className="mt-4 grid grid-cols-3 gap-2">
         {photos.map((photo) => (
           <figure
-            className="overflow-hidden rounded-md border border-white/10 bg-[#0b1020]"
+            className="overflow-hidden rounded-md border border-white/10 bg-[#0f1115]"
             key={photo.src}
           >
             <img
@@ -857,13 +857,13 @@ function ActivityGroup({
               loading="lazy"
             />
             <figcaption className="border-t border-white/10 px-2 py-1.5">
-              <span className="block font-mono text-[10px] font-semibold text-[#78f0c4]">
+              <span className="block font-mono text-[10px] font-semibold text-[#7bd88f]">
                 {photo.year}
               </span>
-              <span className="block truncate text-[10px] font-semibold leading-4 text-[#dbe7ff]">
+              <span className="block truncate text-[10px] font-semibold leading-4 text-[#e8ebf0]">
                 {photo.event}
               </span>
-              <span className="block truncate text-[10px] leading-4 text-[#8fa1c1]">
+              <span className="block truncate text-[10px] leading-4 text-[#8d96a6]">
                 {photo.context}
               </span>
             </figcaption>
@@ -873,24 +873,24 @@ function ActivityGroup({
       <div className="mt-4 space-y-2">
         {activities.map((activity) => (
           <a
-            className="block rounded-md border border-white/10 bg-white/[0.03] p-3 transition hover:border-[#8bd7ff]/50 focus:outline-none focus:ring-2 focus:ring-[#8bd7ff]"
+            className="block rounded-md border border-white/10 bg-white/[0.03] p-3 transition hover:border-[#6ea8ff]/50 focus:outline-none focus:ring-2 focus:ring-[#6ea8ff]"
             href={activity.href}
             key={activity.href}
             target="_blank"
             rel="noreferrer"
           >
-            <span className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-[#78f0c4]">
+            <span className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-[#7bd88f]">
               {activity.theme}
             </span>
             <span className="mt-1 flex items-start justify-between gap-3 text-sm font-semibold text-white">
               {activity.title}
               <ExternalLink
-                className="mt-0.5 flex-none text-[#8fa1c1]"
+                className="mt-0.5 flex-none text-[#8d96a6]"
                 size={14}
                 aria-hidden="true"
               />
             </span>
-            <span className="mt-1 block text-xs leading-5 text-[#9fb0cc]">
+            <span className="mt-1 block text-xs leading-5 text-[#a2aab7]">
               {activity.context}
             </span>
           </a>
@@ -902,7 +902,7 @@ function ActivityGroup({
 
 function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-[#0b1020] px-4 py-3 text-xs leading-5 text-[#7184a6] sm:px-6 lg:px-8">
+    <footer className="border-t border-white/10 bg-[#0f1115] px-4 py-3 text-xs leading-5 text-[#707988] sm:px-6 lg:px-8">
       <div className="flex flex-col justify-between gap-2 sm:flex-row">
         <span>Personal portfolio of Junho Kong.</span>
         <span>
