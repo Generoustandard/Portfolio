@@ -478,8 +478,8 @@ function App() {
     threads.find((thread) => thread.id === activeThreadId) ?? threads[0]
 
   return (
-    <main className="min-h-screen bg-[#eef2f7] px-4 py-5 text-[#172033] sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl overflow-hidden rounded-xl border border-[#c7d0df] bg-[#0b1020] shadow-2xl shadow-[#172033]/15">
+    <main className="min-h-screen bg-[#0b1020] text-[#172033]">
+      <div className="flex min-h-screen w-full flex-col overflow-hidden bg-[#0b1020]">
         <TopBar />
         <IntroPanel />
         <ThreadWorkspace
@@ -487,8 +487,8 @@ function App() {
           activeThreadId={activeThreadId}
           onSelectThread={setActiveThreadId}
         />
+        <Footer />
       </div>
-      <Footer />
     </main>
   )
 }
@@ -592,7 +592,7 @@ function ThreadWorkspace({
 }) {
   return (
     <section
-      className="grid min-h-[650px] bg-[#0b1020] lg:grid-cols-[17rem_minmax(0,1fr)] xl:grid-cols-[17rem_minmax(0,1fr)_18rem]"
+      className="grid min-h-[650px] flex-1 bg-[#0b1020] lg:grid-cols-[17rem_minmax(0,1fr)] xl:grid-cols-[17rem_minmax(0,1fr)_18rem]"
       aria-label="Portfolio thread workspace"
     >
       <ThreadSidebar
@@ -953,7 +953,7 @@ function ThreadInspector({ thread }: { thread: PortfolioThread }) {
 
 function Footer() {
   return (
-    <footer className="mx-auto max-w-7xl px-2 py-5 text-sm leading-6 text-[#516078]">
+    <footer className="border-t border-white/10 bg-[#0b1020] px-4 py-3 text-xs leading-5 text-[#7184a6] sm:px-6 lg:px-8">
       <div className="flex flex-col justify-between gap-2 sm:flex-row">
         <span>Personal portfolio of Junho Kong.</span>
         <span>
