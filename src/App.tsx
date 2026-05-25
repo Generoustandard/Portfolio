@@ -362,7 +362,7 @@ function Header() {
         aria-label="Primary navigation"
       >
         <a href="#top" className="text-sm font-semibold text-[#172033]">
-          Junho Kong
+          DX Portfolio
         </a>
         <div className="hidden items-center gap-6 text-sm text-[#4d5b73] md:flex">
           <a className="hover:text-[#1959ff]" href="#about">
@@ -402,11 +402,21 @@ function Hero() {
         <p className="mt-5 text-xl font-semibold text-[#24314a] sm:text-2xl">
           Developer Experience-oriented AI Platform Engineer
         </p>
-        <p className="mt-3 text-base font-medium text-[#1959ff] sm:text-lg">
-          Manufacturing AI Platform Architect - Codex Ambassador - Open-source
-          AI Builder
-        </p>
-        <p className="mt-7 max-w-2xl text-lg leading-8 text-[#44526a]">
+        <div className="mt-5 flex flex-wrap gap-2">
+          {[
+            'Manufacturing AI Platform',
+            'Codex Ambassador',
+            'Open-source AI Builder',
+          ].map((label) => (
+            <span
+              className="rounded-md border border-[#c6d2e5] bg-white px-3 py-1.5 text-sm font-semibold text-[#1959ff] shadow-sm"
+              key={label}
+            >
+              {label}
+            </span>
+          ))}
+        </div>
+        <p className="mt-6 max-w-2xl text-lg leading-8 text-[#44526a]">
           I build practical developer experiences around frontier AI, from
           Korean Codex community onboarding to industrial AI platforms, agent
           evaluation, and creative AI builder projects.
@@ -442,7 +452,7 @@ function Hero() {
 
       <aside
         className="rounded-lg border border-[#1e2b45] bg-[#101828] p-5 text-white shadow-xl shadow-[#101828]/20"
-        aria-label="Developer experience workflow summary"
+        aria-label="Portfolio evidence map"
       >
         <div className="flex items-center justify-between border-b border-white/10 pb-4">
           <div className="flex items-center gap-2">
@@ -451,7 +461,7 @@ function Hero() {
             <span className="h-2.5 w-2.5 rounded-full bg-[#20c997]" />
           </div>
           <span className="text-xs font-medium text-[#aab8d4]">
-            dx-workflow.ts
+            evidence-map.ts
           </span>
         </div>
         <div className="mt-5 flex items-center gap-4">
@@ -463,9 +473,10 @@ function Hero() {
             height="80"
           />
           <div>
-            <p className="text-lg font-semibold text-white">Junho Kong</p>
+            <p className="text-lg font-semibold text-white">Proof of work</p>
             <p className="mt-1 text-sm leading-5 text-[#aab8d4]">
-              AI platform engineer focused on developer experience.
+              Public-safe evidence across community, platform, agent
+              evaluation, and builder projects.
             </p>
           </div>
         </div>
@@ -474,19 +485,19 @@ function Hero() {
             run_id: dx-frontier-ai-001
           </p>
           <h2 className="mt-4 text-2xl font-semibold leading-tight text-white">
-            Practical AI adoption needs more than model access.
+            From capability to adoption.
           </h2>
           <p className="mt-4 text-sm leading-6 text-[#c9d5ea]">
-            The work is turning frontier capability into developer-facing
-            surfaces: onboarding, examples, evaluation, evidence, and feedback.
+            The through-line is practical adoption: make AI workflows visible,
+            testable, explainable, and easier for developers to try.
           </p>
         </div>
         <div className="divide-y divide-white/10 border-y border-white/10">
           {[
-            ['01', 'Community onboarding', 'Codex learning paths'],
-            ['02', 'Platform architecture', 'Traceable AI workflows'],
-            ['03', 'Agent evaluation', 'Reproducible benchmarks'],
-            ['04', 'Documentation loops', 'Human-reviewed iteration'],
+            ['01', 'Community', 'Onboarding and workshops'],
+            ['02', 'Platform', 'Traceable runs and artifacts'],
+            ['03', 'Evaluation', 'Reproducible agent workflows'],
+            ['04', 'Docs', 'Localization and review loops'],
           ].map(([number, title, detail]) => (
             <div
               className="grid grid-cols-[2.5rem_1fr] gap-3 py-3"
