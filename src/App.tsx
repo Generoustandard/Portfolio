@@ -298,7 +298,8 @@ const codexActivityPhotos: ActivityPhoto[] = [
     alt: 'Elev8 Tech Leadership invited session group photo',
     year: '2026',
     event: 'Elev8 x Codex Community Korea',
-    context: 'Tech Leadership invited session',
+    context:
+      'Co-planned and co-hosted the event with Elev8, leading a talk salon for leadership executives.',
     reviewHref: linkedInRecapUrls.elev8,
   },
   {
