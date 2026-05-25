@@ -93,10 +93,6 @@ const threads: PortfolioThread[] = [
       'Agent evaluation',
       'Documentation loops',
     ],
-    links: [
-      { label: 'GitHub', href: githubUrl },
-      { label: 'Codex Community Korea', href: codexCommunityUrl },
-    ],
     note:
       'This portfolio is public-safe. It does not include confidential manufacturing data, internal system names, or private screenshots.',
   },
