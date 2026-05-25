@@ -396,13 +396,24 @@ function Hero() {
       className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 sm:px-6 sm:py-18 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-20"
     >
       <div>
-        <h1 className="max-w-3xl text-5xl font-semibold leading-[1.04] text-[#111827] sm:text-6xl lg:text-7xl">
-          Junho Kong
-        </h1>
-        <p className="mt-5 text-xl font-semibold text-[#24314a] sm:text-2xl">
-          Developer Experience-oriented AI Platform Engineer
-        </p>
-        <div className="mt-5 flex flex-wrap gap-2">
+        <div className="flex flex-col gap-5 min-[520px]:flex-row min-[520px]:items-center">
+          <img
+            className="h-32 w-32 rounded-full border-4 border-white object-cover shadow-xl shadow-[#1959ff]/15 ring-1 ring-[#c6d2e5] sm:h-36 sm:w-36 lg:h-40 lg:w-40"
+            src={profilePhotoUrl}
+            alt="Junho Kong profile portrait"
+            width="160"
+            height="160"
+          />
+          <div className="min-w-0">
+            <h1 className="max-w-3xl text-5xl font-semibold leading-[1.04] text-[#111827] sm:text-6xl lg:text-7xl">
+              Junho Kong
+            </h1>
+            <p className="mt-4 text-xl font-semibold text-[#24314a] sm:text-2xl">
+              Developer Experience-oriented AI Platform Engineer
+            </p>
+          </div>
+        </div>
+        <div className="mt-6 flex flex-wrap gap-2">
           {[
             'Manufacturing AI Platform',
             'Codex Ambassador',
@@ -464,21 +475,12 @@ function Hero() {
             evidence-map.ts
           </span>
         </div>
-        <div className="mt-5 flex items-center gap-4">
-          <img
-            className="h-20 w-20 rounded-full border border-white/20 object-cover shadow-lg shadow-black/20"
-            src={profilePhotoUrl}
-            alt="Junho Kong profile portrait"
-            width="80"
-            height="80"
-          />
-          <div>
-            <p className="text-lg font-semibold text-white">Proof of work</p>
-            <p className="mt-1 text-sm leading-5 text-[#aab8d4]">
-              Public-safe evidence across community, platform, agent
-              evaluation, and builder projects.
-            </p>
-          </div>
+        <div className="mt-5 rounded-md border border-white/10 bg-white/[0.03] p-4">
+          <p className="text-lg font-semibold text-white">Proof of work</p>
+          <p className="mt-1 text-sm leading-5 text-[#aab8d4]">
+            Public-safe evidence across community, platform, agent evaluation,
+            and builder projects.
+          </p>
         </div>
         <div className="py-6">
           <p className="font-mono text-sm text-[#8bd7ff]">
