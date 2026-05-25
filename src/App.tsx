@@ -111,12 +111,7 @@ const threads: PortfolioThread[] = [
       'Collect feedback.',
       'Improve the product, docs, and onboarding flow.',
     ],
-    focus: [
-      'Developer onboarding',
-      'AI platform architecture',
-      'Agent evaluation',
-      'Documentation loops',
-    ],
+    focus: [],
     note:
       'This portfolio is public-safe. It does not include confidential manufacturing data, internal system names, or private screenshots.',
   },
@@ -677,18 +672,20 @@ function ThreadMain({ thread }: { thread: PortfolioThread }) {
 
         {thread.id === 'overview' ? <ActivityEvidence /> : null}
 
-        <div className="rounded-lg border border-[#deded8] bg-[#fbfbf8] p-4 shadow-sm">
-          <div className="flex flex-wrap gap-2">
-            {thread.focus.map((item) => (
-              <span
-                className="rounded-md border border-[#deded8] bg-white px-2.5 py-1 text-xs font-semibold text-[#343541]"
-                key={item}
-              >
-                {item}
-              </span>
-            ))}
+        {thread.focus.length ? (
+          <div className="rounded-lg border border-[#deded8] bg-[#fbfbf8] p-4 shadow-sm">
+            <div className="flex flex-wrap gap-2">
+              {thread.focus.map((item) => (
+                <span
+                  className="rounded-md border border-[#deded8] bg-white px-2.5 py-1 text-xs font-semibold text-[#343541]"
+                  key={item}
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
+        ) : null}
 
         {thread.links?.length ? (
           <div className="flex flex-wrap gap-3">
