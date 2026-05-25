@@ -269,10 +269,10 @@ const codexActivityLinks: ActivityLink[] = [
     href: 'https://www.linkedin.com/posts/junho-kong_codex-skillathon-ai-activity-7461671528787496960-ciHK',
   },
   {
-    title: 'Elev8 Codex community session',
-    theme: 'Developer Community',
+    title: 'Elev8 Tech Leadership invited session',
+    theme: 'Tech Leadership',
     context:
-      'Public recap of a Codex Community Korea learning session with external event partners.',
+      'Public recap of a Codex Community Korea session that invited Tech Leadership for practical AI developer workflow discussion.',
     href: 'https://www.linkedin.com/posts/junho-kong_elev8-openai-codexcommunitykorea-activity-7460133915027148801-ZZsK',
   },
   {
@@ -353,10 +353,10 @@ const codexActivityPhotos: ActivityPhoto[] = [
   },
   {
     src: `${assetBaseUrl}activity/codex-elev8.webp`,
-    alt: 'Elev8 Codex community gathering group photo',
+    alt: 'Elev8 Tech Leadership invited session group photo',
     year: '2026',
     event: 'Elev8 x Codex Community Korea',
-    context: 'Developer community session',
+    context: 'Tech Leadership invited session',
   },
   {
     src: `${assetBaseUrl}activity/codex-hackathon.webp`,
