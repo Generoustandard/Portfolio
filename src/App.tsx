@@ -338,7 +338,8 @@ const pseudoLabActivityPhotos: ActivityPhoto[] = [
     alt: 'AngelHack Hackathon team photo',
     year: '2025',
     event: 'Hack Seoul 2025 / AngelHack',
-    context: 'Hackathon builder activity',
+    context:
+      'Provided special support for participants through hackathon idea suggestions and career consultation.',
     reviewHref: linkedInRecapUrls.hackSeoul,
   },
   {
