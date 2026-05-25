@@ -307,7 +307,8 @@ const codexActivityPhotos: ActivityPhoto[] = [
     alt: 'Robert Walters Codex Community Korea meetup group photo',
     year: '2026',
     event: 'Robert Walters x Codex Meetup',
-    context: 'Community meetup',
+    context:
+      'Planned the meetup and introduced Codex workflows for developer onboarding.',
     eventHref: lumaEventUrls.robertWalters,
     reviewHref: linkedInRecapUrls.openAiCodexDeveloperCommunity,
   },
