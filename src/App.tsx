@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   ArrowRight,
   BookOpenCheck,
@@ -6,8 +6,10 @@ import {
   BrainCircuit,
   ExternalLink,
   Globe2,
+  Maximize2,
   Music2,
   Sparkles,
+  X,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
@@ -785,36 +787,70 @@ function ListBlock({ label, items }: { label: string; items: string[] }) {
 }
 
 function ActivityEvidence() {
+  const [selectedPhoto, setSelectedPhoto] = useState<ActivityPhoto | null>(null)
+
+  useEffect(() => {
+    if (!selectedPhoto) {
+      return
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setSelectedPhoto(null)
+      }
+    }
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [selectedPhoto])
+
   return (
-    <section className="space-y-4" aria-labelledby="activity-evidence-title">
-      <div>
-        <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#0f766e]">
-          evidence
-        </p>
-        <h3
-          className="mt-2 text-2xl font-semibold text-[#202123]"
-          id="activity-evidence-title"
-        >
-          Public Activity Evidence
-        </h3>
-        <p className="mt-2 max-w-3xl text-sm leading-6 text-[#5f6368]">
-          Public posts and photos are grouped to separate Codex-facing
-          developer community work from PseudoLab builder ecosystem activity.
-        </p>
-      </div>
-      <div className="grid gap-4 xl:grid-cols-2">
-        <ActivityGroup
-          title="Codex / AI Developer Community"
-          photos={codexActivityPhotos}
-          activities={codexActivityLinks}
+    <>
+      <section className="space-y-4" aria-labelledby="activity-evidence-title">
+        <div>
+          <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#0f766e]">
+            evidence
+          </p>
+          <h3
+            className="mt-2 text-2xl font-semibold text-[#202123]"
+            id="activity-evidence-title"
+          >
+            Public Activity Evidence
+          </h3>
+          <p className="mt-2 max-w-3xl text-sm leading-6 text-[#5f6368]">
+            Public posts and photos are grouped to separate Codex-facing
+            developer community work from PseudoLab builder ecosystem activity.
+          </p>
+        </div>
+        <div className="grid gap-4 xl:grid-cols-2">
+          <ActivityGroup
+            title="Codex / AI Developer Community"
+            photos={codexActivityPhotos}
+            activities={codexActivityLinks}
+            onPhotoSelect={setSelectedPhoto}
+          />
+          <ActivityGroup
+            title="PseudoLab / Builder Ecosystem"
+            photos={pseudoLabActivityPhotos}
+            activities={pseudoLabActivityLinks}
+            onPhotoSelect={setSelectedPhoto}
+          />
+        </div>
+      </section>
+
+      {selectedPhoto ? (
+        <PhotoLightbox
+          photo={selectedPhoto}
+          onClose={() => setSelectedPhoto(null)}
         />
-        <ActivityGroup
-          title="PseudoLab / Builder Ecosystem"
-          photos={pseudoLabActivityPhotos}
-          activities={pseudoLabActivityLinks}
-        />
-      </div>
-    </section>
+      ) : null}
+    </>
   )
 }
 
@@ -822,10 +858,12 @@ function ActivityGroup({
   title,
   photos,
   activities,
+  onPhotoSelect,
 }: {
   title: string
   photos: ActivityPhoto[]
   activities: ActivityLink[]
+  onPhotoSelect: (photo: ActivityPhoto) => void
 }) {
   return (
     <div className="rounded-lg border border-[#deded8] bg-[#fbfbf8] p-4 shadow-sm">
@@ -836,12 +874,26 @@ function ActivityGroup({
             className="overflow-hidden rounded-md border border-[#deded8] bg-white"
             key={photo.src}
           >
-            <img
-              className="aspect-[4/3] w-full object-cover"
-              src={photo.src}
-              alt={photo.alt}
-              loading="lazy"
-            />
+            <button
+              aria-label={`Expand photo: ${photo.event}`}
+              className="group relative block w-full overflow-hidden text-left focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#4f7cff]"
+              onClick={() => onPhotoSelect(photo)}
+              title="Expand photo"
+              type="button"
+            >
+              <img
+                className="aspect-[4/3] w-full object-cover transition duration-200 group-hover:scale-[1.03]"
+                src={photo.src}
+                alt={photo.alt}
+                loading="lazy"
+              />
+              <span
+                className="pointer-events-none absolute right-2 top-2 inline-flex h-7 w-7 items-center justify-center rounded-md border border-white/70 bg-white/85 text-[#343541] opacity-0 shadow-sm transition group-hover:opacity-100 group-focus-visible:opacity-100"
+                aria-hidden="true"
+              >
+                <Maximize2 size={14} />
+              </span>
+            </button>
             <figcaption className="border-t border-[#deded8] px-2 py-1.5">
               <span className="block font-mono text-[10px] font-semibold text-[#0f766e]">
                 {photo.year}
@@ -881,6 +933,57 @@ function ActivityGroup({
             </span>
           </a>
         ))}
+      </div>
+    </div>
+  )
+}
+
+function PhotoLightbox({
+  photo,
+  onClose,
+}: {
+  photo: ActivityPhoto
+  onClose: () => void
+}) {
+  return (
+    <div
+      aria-modal="true"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[#202123]/80 px-4 py-6 backdrop-blur-sm"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) {
+          onClose()
+        }
+      }}
+      role="dialog"
+    >
+      <div className="max-h-full w-full max-w-5xl overflow-hidden rounded-lg border border-white/20 bg-[#fbfbf8] shadow-2xl">
+        <div className="flex items-start justify-between gap-4 border-b border-[#deded8] px-4 py-3">
+          <div>
+            <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#0f766e]">
+              {photo.year}
+            </p>
+            <h4 className="mt-1 text-base font-semibold text-[#202123]">
+              {photo.event}
+            </h4>
+            <p className="mt-1 text-sm text-[#5f6368]">{photo.context}</p>
+          </div>
+          <button
+            aria-label="Close expanded photo"
+            className="inline-flex h-9 w-9 flex-none items-center justify-center rounded-md border border-[#deded8] bg-white text-[#343541] transition hover:bg-[#f1f1ed] focus:outline-none focus:ring-2 focus:ring-[#4f7cff]"
+            onClick={onClose}
+            title="Close"
+            type="button"
+          >
+            <X size={18} aria-hidden="true" />
+          </button>
+        </div>
+        <div className="bg-[#111318] p-2 sm:p-3">
+          <img
+            className="max-h-[72vh] w-full object-contain"
+            src={photo.src}
+            alt={photo.alt}
+          />
+        </div>
       </div>
     </div>
   )
