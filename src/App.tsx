@@ -5,7 +5,6 @@ import {
   Boxes,
   BrainCircuit,
   ExternalLink,
-  GitBranch,
   Globe2,
   Music2,
   Network,
@@ -139,7 +138,7 @@ const threads: PortfolioThread[] = [
     status: 'case-study',
     icon: Boxes,
     intro:
-      'Designed a manufacturing-first AI analysis platform concept that connects data management, modeling, visualization, RAG, memory, report generation, and LLM orchestration into a traceable workflow.',
+      'Designed a public-safe manufacturing-first AI analysis platform concept that connects data management, modeling, visualization, RAG, memory, report generation, and LLM orchestration into a traceable workflow.',
     role: 'Architect / Builder',
     context:
       'Industrial AI workflows need evidence, traceability, and user-facing surfaces that help people trust results rather than just receive model output.',
@@ -148,6 +147,7 @@ const threads: PortfolioThread[] = [
       'An artifact registration pattern for outputs, reports, and generated results.',
       'Evidence-backed report and chatbot answer flows.',
       'A Korean-first UX direction for practical manufacturing AI workflows.',
+      'A synthetic case-study framing with no confidential manufacturing data or internal system details.',
     ],
     dxSignal: [
       'Treats LLMs as orchestration coordinators, not blind calculators.',
@@ -506,26 +506,9 @@ function TopBar() {
           junho-kong.dx
         </span>
       </div>
-      <nav className="flex items-center gap-2" aria-label="Primary links">
-        <a
-          className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/[0.04] px-3 py-2 text-sm font-semibold text-[#dbe7ff] transition hover:border-[#8bd7ff]/60 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#8bd7ff]"
-          href={githubUrl}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <GitBranch size={16} aria-hidden="true" />
-          GitHub
-        </a>
-        <a
-          className="hidden items-center gap-2 rounded-md bg-[#2f6bff] px-3 py-2 text-sm font-semibold text-white transition hover:bg-[#2558dd] focus:outline-none focus:ring-2 focus:ring-[#8bd7ff] sm:inline-flex"
-          href={codexCommunityUrl}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <Globe2 size={16} aria-hidden="true" />
-          Codex Community
-        </a>
-      </nav>
+      <span className="font-mono text-xs font-semibold text-[#7184a6]">
+        portfolio.workspace
+      </span>
     </header>
   )
 }
@@ -592,7 +575,7 @@ function ThreadWorkspace({
 }) {
   return (
     <section
-      className="grid min-h-[650px] flex-1 bg-[#0b1020] lg:grid-cols-[17rem_minmax(0,1fr)] xl:grid-cols-[17rem_minmax(0,1fr)_18rem]"
+      className="grid min-h-[650px] flex-1 bg-[#0b1020] lg:grid-cols-[18rem_minmax(0,1fr)]"
       aria-label="Portfolio thread workspace"
     >
       <ThreadSidebar
@@ -600,7 +583,6 @@ function ThreadWorkspace({
         onSelectThread={onSelectThread}
       />
       <ThreadMain thread={activeThread} />
-      <ThreadInspector thread={activeThread} />
     </section>
   )
 }
@@ -615,7 +597,8 @@ function ThreadSidebar({
   return (
     <aside className="border-b border-white/10 bg-[#0f172a] lg:border-b-0 lg:border-r">
       <div className="hidden p-4 lg:block">
-        <p className="mb-3 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#7184a6]">
+        <QuickLinks />
+        <p className="mb-3 mt-5 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#7184a6]">
           Threads
         </p>
         <div className="space-y-2">
@@ -629,6 +612,10 @@ function ThreadSidebar({
             />
           ))}
         </div>
+      </div>
+
+      <div className="border-b border-white/10 p-3 lg:hidden">
+        <QuickLinks compact />
       </div>
 
       <div className="overflow-x-auto p-3 lg:hidden">
@@ -646,6 +633,38 @@ function ThreadSidebar({
         </div>
       </div>
     </aside>
+  )
+}
+
+function QuickLinks({ compact = false }: { compact?: boolean }) {
+  return (
+    <div>
+      <p
+        className={`font-mono text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#7184a6] ${
+          compact ? 'sr-only' : 'mb-3'
+        }`}
+      >
+        Quick Links
+      </p>
+      <div className={compact ? 'flex gap-2 overflow-x-auto' : 'space-y-2'}>
+        {contactLinks.map((link) => (
+          <a
+            className={`inline-flex items-center justify-between gap-3 rounded-md border border-white/10 bg-white/[0.03] text-sm font-semibold text-[#dbe7ff] transition hover:border-[#8bd7ff]/50 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#8bd7ff] ${
+              compact
+                ? 'min-w-max px-3 py-2'
+                : 'w-full px-3 py-2'
+            }`}
+            href={link.href}
+            key={link.href}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>{link.label}</span>
+            <ArrowRight size={14} aria-hidden="true" />
+          </a>
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -878,76 +897,6 @@ function ActivityGroup({
         ))}
       </div>
     </div>
-  )
-}
-
-function ThreadInspector({ thread }: { thread: PortfolioThread }) {
-  return (
-    <aside className="border-t border-white/10 bg-[#0f172a] p-5 xl:border-l xl:border-t-0">
-      <div className="sticky top-5 space-y-4">
-        <section className="rounded-lg border border-white/10 bg-[#111827] p-4">
-          <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#7184a6]">
-            role
-          </p>
-          <p className="mt-3 text-sm font-semibold leading-6 text-white">
-            {thread.role}
-          </p>
-        </section>
-
-        {thread.note ? (
-          <section className="rounded-lg border border-[#20c997]/25 bg-[#20c997]/[0.06] p-4">
-            <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#78f0c4]">
-              public note
-            </p>
-            <p className="mt-3 text-sm leading-6 text-[#c9d5ea]">
-              {thread.note}
-            </p>
-          </section>
-        ) : null}
-
-        <section className="rounded-lg border border-white/10 bg-[#111827] p-4">
-          <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#7184a6]">
-            quick links
-          </p>
-          <div className="mt-3 space-y-2">
-            {contactLinks.map((link) => (
-              <a
-                className="flex items-center justify-between gap-3 rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm font-semibold text-[#dbe7ff] transition hover:border-[#8bd7ff]/50 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#8bd7ff]"
-                href={link.href}
-                key={link.href}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span>{link.label}</span>
-                <ArrowRight size={14} aria-hidden="true" />
-              </a>
-            ))}
-          </div>
-        </section>
-
-        <section className="rounded-lg border border-white/10 bg-[#111827] p-4">
-          <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#7184a6]">
-            operating loop
-          </p>
-          <ol className="mt-3 space-y-2 text-sm leading-6 text-[#c9d5ea]">
-            {[
-              'Build demos and tools',
-              'Explain workflows',
-              'Share with developers',
-              'Collect feedback',
-              'Improve onboarding',
-            ].map((step, index) => (
-              <li className="flex gap-2" key={step}>
-                <span className="font-mono text-[#78f0c4]">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <span>{step}</span>
-              </li>
-            ))}
-          </ol>
-        </section>
-      </div>
-    </aside>
   )
 }
 
