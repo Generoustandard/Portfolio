@@ -462,58 +462,109 @@ function Hero() {
       </div>
 
       <aside
-        className="rounded-lg border border-[#1e2b45] bg-[#101828] p-5 text-white shadow-xl shadow-[#101828]/20"
-        aria-label="Portfolio evidence map"
+        className="overflow-hidden rounded-lg border border-[#1e2b45] bg-[#0b1020] text-white shadow-xl shadow-[#101828]/20"
+        aria-label="Developer experience workbench summary"
       >
-        <div className="flex items-center justify-between border-b border-white/10 pb-4">
+        <div className="flex items-center justify-between border-b border-white/10 bg-[#111827] px-4 py-3">
           <div className="flex items-center gap-2">
             <span className="h-2.5 w-2.5 rounded-full bg-[#ff6b6b]" />
             <span className="h-2.5 w-2.5 rounded-full bg-[#f5c542]" />
             <span className="h-2.5 w-2.5 rounded-full bg-[#20c997]" />
           </div>
           <span className="text-xs font-medium text-[#aab8d4]">
-            evidence-map.ts
+            dx-workbench.codex
           </span>
         </div>
-        <div className="mt-5 rounded-md border border-white/10 bg-white/[0.03] p-4">
-          <p className="text-lg font-semibold text-white">Proof of work</p>
-          <p className="mt-1 text-sm leading-5 text-[#aab8d4]">
-            Public-safe evidence across community, platform, agent evaluation,
-            and builder projects.
-          </p>
-        </div>
-        <div className="py-6">
-          <p className="font-mono text-sm text-[#8bd7ff]">
-            run_id: dx-frontier-ai-001
-          </p>
-          <h2 className="mt-4 text-2xl font-semibold leading-tight text-white">
-            From capability to adoption.
-          </h2>
-          <p className="mt-4 text-sm leading-6 text-[#c9d5ea]">
-            The through-line is practical adoption: make AI workflows visible,
-            testable, explainable, and easier for developers to try.
-          </p>
-        </div>
-        <div className="divide-y divide-white/10 border-y border-white/10">
-          {[
-            ['01', 'Community', 'Onboarding and workshops'],
-            ['02', 'Platform', 'Traceable runs and artifacts'],
-            ['03', 'Evaluation', 'Reproducible agent workflows'],
-            ['04', 'Docs', 'Localization and review loops'],
-          ].map(([number, title, detail]) => (
-            <div
-              className="grid grid-cols-[2.5rem_1fr] gap-3 py-3"
-              key={title}
-            >
-              <span className="font-mono text-xs font-semibold text-[#20c997]">
-                {number}
-              </span>
-              <div>
-                <p className="text-sm font-semibold text-white">{title}</p>
-                <p className="text-sm text-[#aab8d4]">{detail}</p>
-              </div>
+        <div className="grid md:grid-cols-[8.5rem_1fr]">
+          <div className="border-b border-white/10 bg-[#0f172a] p-4 md:border-b-0 md:border-r">
+            <p className="mb-3 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#7184a6]">
+              Workspace
+            </p>
+            <div className="grid gap-1.5 text-sm md:block md:space-y-1.5">
+              {['community.md', 'platform.ts', 'agents.eval', 'docs.kr'].map(
+                (file, index) => (
+                  <div
+                    className={`rounded-md px-2.5 py-2 font-mono ${
+                      index === 0
+                        ? 'bg-[#18233a] text-white'
+                        : 'text-[#8fa1c1]'
+                    }`}
+                    key={file}
+                  >
+                    {file}
+                  </div>
+                ),
+              )}
             </div>
-          ))}
+          </div>
+          <div className="p-4 sm:p-5">
+            <div className="flex flex-col gap-3 border-b border-white/10 pb-4 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <p className="font-mono text-xs font-semibold text-[#8bd7ff]">
+                  run_id: dx-frontier-ai-001
+                </p>
+                <h2 className="mt-3 text-2xl font-semibold leading-tight text-white">
+                  DX Workbench
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-[#c9d5ea]">
+                  A compact map of the developer-facing work: onboarding,
+                  platform architecture, evaluation, and documentation loops.
+                </p>
+              </div>
+              <span className="inline-flex w-fit items-center rounded-md border border-[#20c997]/40 bg-[#20c997]/10 px-2.5 py-1 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#78f0c4]">
+                public-safe
+              </span>
+            </div>
+
+            <div className="mt-4 rounded-md border border-white/10 bg-[#060b16] p-3 font-mono text-xs leading-6 text-[#b9c7df]">
+              <p>
+                <span className="text-[#8bd7ff]">task</span> turn frontier AI
+                into practical developer workflows
+              </p>
+              <p>
+                <span className="text-[#8bd7ff]">mode</span> build - explain -
+                ship - learn
+              </p>
+            </div>
+
+            <div className="mt-4 space-y-2.5">
+              {[
+                ['done', 'Codex onboarding', 'Korean builder community'],
+                [
+                  'done',
+                  'Industrial AI platform',
+                  'Traceable synthetic case study',
+                ],
+                [
+                  'running',
+                  'Agent evaluation',
+                  'Cost-aware reproducible workflows',
+                ],
+                ['review', 'Docs localization', 'Human-in-the-loop Korean DX'],
+              ].map(([status, title, detail]) => (
+                <div
+                  className="grid grid-cols-[4.5rem_1fr] gap-3 rounded-md border border-white/10 bg-white/[0.03] p-3"
+                  key={title}
+                >
+                  <span
+                    className={`font-mono text-[0.68rem] font-semibold uppercase tracking-[0.12em] ${
+                      status === 'done'
+                        ? 'text-[#78f0c4]'
+                        : status === 'running'
+                          ? 'text-[#8bd7ff]'
+                          : 'text-[#f5c542]'
+                    }`}
+                  >
+                    {status}
+                  </span>
+                  <div>
+                    <p className="text-sm font-semibold text-white">{title}</p>
+                    <p className="text-sm text-[#aab8d4]">{detail}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </aside>
     </section>
