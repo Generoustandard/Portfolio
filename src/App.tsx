@@ -303,14 +303,6 @@ const codexActivityPhotos: ActivityPhoto[] = [
     reviewHref: linkedInRecapUrls.elev8,
   },
   {
-    src: `${assetBaseUrl}activity/codex-hackathon.webp`,
-    alt: 'Codex-related hackathon group photo',
-    year: '2026',
-    event: 'OpenAI x Coxwave Hackathon',
-    context: 'Codex builder activity',
-    reviewHref: linkedInRecapUrls.codexAiEngineering,
-  },
-  {
     src: `${assetBaseUrl}activity/codex-robert-walters.webp`,
     alt: 'Robert Walters Codex Community Korea meetup group photo',
     year: '2026',
@@ -331,6 +323,15 @@ const codexActivityPhotos: ActivityPhoto[] = [
 ]
 
 const pseudoLabActivityPhotos: ActivityPhoto[] = [
+  {
+    src: `${assetBaseUrl}activity/codex-hackathon.webp`,
+    alt: 'OpenAI x Coxwave Hackathon group photo',
+    year: '2026',
+    event: 'OpenAI x Coxwave Hackathon',
+    context:
+      'Joined through PseudoLab as a first-round hackathon judge.',
+    reviewHref: linkedInRecapUrls.codexAiEngineering,
+  },
   {
     src: `${assetBaseUrl}activity/pseudolab-angelhack.webp`,
     alt: 'AngelHack Hackathon team photo',
