@@ -35,13 +35,6 @@ type PortfolioThread = {
   note?: string
 }
 
-type ActivityLink = {
-  title: string
-  theme: string
-  context: string
-  href: string
-}
-
 type ActivityPhoto = {
   src: string
   alt: string
@@ -286,89 +279,6 @@ const threads: PortfolioThread[] = [
     ],
     links: [{ label: 'View repository', href: docsKrUrl }],
     note: 'Ongoing experiment / MVP stage. Supporting project under iteration.',
-  },
-]
-
-const codexActivityLinks: ActivityLink[] = [
-  {
-    title: 'Codex Skillathon',
-    theme: 'Developer Workshop',
-    context:
-      'Hands-on community activity around Codex, AI workflows, and practical builder learning.',
-    href: linkedInRecapUrls.codexSkillathon,
-  },
-  {
-    title: 'Elev8 Tech Leadership invited session',
-    theme: 'Tech Leadership',
-    context:
-      'Public recap of a Codex Community Korea session that invited Tech Leadership for practical AI developer workflow discussion.',
-    href: linkedInRecapUrls.elev8,
-  },
-  {
-    title: 'Codex AI engineering notes',
-    theme: 'AI Engineering',
-    context:
-      'Public writing around Codex, AI engineering, and developer workflow adoption.',
-    href: linkedInRecapUrls.codexAiEngineering,
-  },
-  {
-    title: 'OpenAI Codex developer community note',
-    theme: 'Developer Community',
-    context:
-      'Early public note on Codex community building and developer-facing learning surfaces.',
-    href: linkedInRecapUrls.openAiCodexDeveloperCommunity,
-  },
-]
-
-const pseudoLabActivityLinks: ActivityLink[] = [
-  {
-    title: "Builder's Night: Codex Community Korea",
-    theme: 'PseudoLab Talk',
-    context:
-      'Public talk on how PseudoLab builder activity led into the Codex Community Korea onboarding hub.',
-    href: linkedInRecapUrls.buildersNight,
-  },
-  {
-    title: 'Science Agent Leaderboard update',
-    theme: 'PseudoLab Project',
-    context:
-      'PseudoLab open-source project update on science agent evaluation, workflow design, and reproducible builder practice.',
-    href: linkedInRecapUrls.scienceAgent,
-  },
-  {
-    title: 'NVIDIA Build-A-Claw AI Agent activity',
-    theme: 'AI Agent Builder',
-    context:
-      'Builder activity connected to AI agents, experimentation, and applied AI workflows.',
-    href: linkedInRecapUrls.nvidia,
-  },
-  {
-    title: 'Multi-agent builder collaboration',
-    theme: 'Builder Collaboration',
-    context:
-      'Community reflection connected to multi-agent thinking, collaboration, and shared output.',
-    href: linkedInRecapUrls.multiAgent,
-  },
-  {
-    title: 'Learning-in-public momentum',
-    theme: 'Builder Habit',
-    context:
-      'Reflection on small actions, compounding practice, and consistent community contribution.',
-    href: linkedInRecapUrls.learningInPublic,
-  },
-  {
-    title: 'Hack Seoul 2025 / AngelHack',
-    theme: 'Hackathon',
-    context:
-      'Public activity from hackathon participation and applied builder practice.',
-    href: linkedInRecapUrls.hackSeoul,
-  },
-  {
-    title: 'PseudoLab Grand Gathering',
-    theme: 'Community Learning',
-    context:
-      'Earlier community activity connected to learning, contribution, and builder identity.',
-    href: linkedInRecapUrls.pseudoLabGrandGathering,
   },
 ]
 
@@ -874,13 +784,11 @@ function ActivityEvidence() {
           <ActivityGroup
             title="Codex / AI Developer Community"
             photos={codexActivityPhotos}
-            activities={codexActivityLinks}
             onPhotoSelect={setSelectedPhoto}
           />
           <ActivityGroup
             title="PseudoLab / Builder Ecosystem"
             photos={pseudoLabActivityPhotos}
-            activities={pseudoLabActivityLinks}
             onPhotoSelect={setSelectedPhoto}
           />
         </div>
@@ -899,32 +807,30 @@ function ActivityEvidence() {
 function ActivityGroup({
   title,
   photos,
-  activities,
   onPhotoSelect,
 }: {
   title: string
   photos: ActivityPhoto[]
-  activities: ActivityLink[]
   onPhotoSelect: (photo: ActivityPhoto) => void
 }) {
   return (
     <div className="rounded-lg border border-[#deded8] bg-[#fbfbf8] p-4 shadow-sm">
       <h4 className="text-lg font-semibold text-[#202123]">{title}</h4>
-      <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">
+      <div className="mt-4 space-y-3">
         {photos.map((photo) => (
-          <figure
-            className="overflow-hidden rounded-md border border-[#deded8] bg-white"
+          <article
+            className="grid grid-cols-[6.25rem_minmax(0,1fr)] gap-3 rounded-md border border-[#deded8] bg-white p-2 sm:grid-cols-[10rem_minmax(0,1fr)]"
             key={photo.src}
           >
             <button
               aria-label={`Expand photo: ${photo.event}`}
-              className="group relative block w-full overflow-hidden text-left focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#4f7cff]"
+              className="group relative block h-full min-h-24 overflow-hidden rounded-md text-left focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#4f7cff] sm:min-h-28"
               onClick={() => onPhotoSelect(photo)}
               title="Expand photo"
               type="button"
             >
               <img
-                className="aspect-[4/3] w-full object-cover transition duration-200 group-hover:scale-[1.03]"
+                className="h-full w-full object-cover transition duration-200 group-hover:scale-[1.03]"
                 src={photo.src}
                 alt={photo.alt}
                 loading="lazy"
@@ -936,45 +842,19 @@ function ActivityGroup({
                 <Maximize2 size={14} />
               </span>
             </button>
-            <figcaption className="border-t border-[#deded8] px-2 py-1.5">
-              <span className="block font-mono text-[10px] font-semibold text-[#0f766e]">
+            <div className="min-w-0 py-1 pr-1">
+              <span className="block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#0f766e]">
                 {photo.year}
               </span>
-              <span className="block truncate text-[10px] font-semibold leading-4 text-[#343541]">
+              <h5 className="mt-1 whitespace-normal break-words text-sm font-semibold leading-5 text-[#202123]">
                 {photo.event}
-              </span>
-              <span className="block truncate text-[10px] leading-4 text-[#7a7a74]">
+              </h5>
+              <p className="mt-1 break-words text-xs leading-5 text-[#5f6368]">
                 {photo.context}
-              </span>
-              <PhotoLinks photo={photo} variant="caption" />
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-      <div className="mt-4 space-y-2">
-        {activities.map((activity) => (
-          <a
-            className="block rounded-md border border-[#deded8] bg-white p-3 transition hover:border-[#8ea7db] hover:bg-[#f6f8ff] focus:outline-none focus:ring-2 focus:ring-[#4f7cff]"
-            href={activity.href}
-            key={activity.href}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <span className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-[#0f766e]">
-              {activity.theme}
-            </span>
-            <span className="mt-1 flex items-start justify-between gap-3 text-sm font-semibold text-[#202123]">
-              {activity.title}
-              <ExternalLink
-                className="mt-0.5 flex-none text-[#7a7a74]"
-                size={14}
-                aria-hidden="true"
-              />
-            </span>
-            <span className="mt-1 block text-xs leading-5 text-[#5f6368]">
-              {activity.context}
-            </span>
-          </a>
+              </p>
+              <PhotoLinks photo={photo} variant="card" />
+            </div>
+          </article>
         ))}
       </div>
     </div>
@@ -1038,15 +918,15 @@ function PhotoLinks({
   variant,
 }: {
   photo: ActivityPhoto
-  variant: 'caption' | 'lightbox'
+  variant: 'card' | 'lightbox'
 }) {
-  const isCaption = variant === 'caption'
-  const linkClass = isCaption
-    ? 'inline-flex items-center gap-1 rounded border border-[#deded8] bg-[#f7f7f3] px-1.5 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.08em] text-[#2857a8] transition hover:border-[#8ea7db] hover:bg-[#f6f8ff] focus:outline-none focus:ring-2 focus:ring-[#4f7cff]'
-    : 'inline-flex items-center gap-1.5 rounded-md border border-[#deded8] bg-white px-3 py-2 text-xs font-semibold text-[#343541] transition hover:bg-[#f1f1ed] focus:outline-none focus:ring-2 focus:ring-[#4f7cff]'
+  const isLightbox = variant === 'lightbox'
+  const linkClass = isLightbox
+    ? 'inline-flex items-center gap-1.5 rounded-md border border-[#deded8] bg-white px-3 py-2 text-xs font-semibold text-[#343541] transition hover:bg-[#f1f1ed] focus:outline-none focus:ring-2 focus:ring-[#4f7cff]'
+    : 'inline-flex items-center gap-1 rounded-md border border-[#deded8] bg-[#f7f7f3] px-2 py-1.5 text-[0.68rem] font-semibold text-[#2857a8] transition hover:border-[#8ea7db] hover:bg-[#f6f8ff] focus:outline-none focus:ring-2 focus:ring-[#4f7cff]'
 
   return (
-    <div className={isCaption ? 'mt-2 flex flex-wrap gap-1.5' : 'mt-3 flex flex-wrap gap-2'}>
+    <div className={isLightbox ? 'mt-3 flex flex-wrap gap-2' : 'mt-3 flex flex-wrap gap-1.5'}>
       {photo.eventHref ? (
         <a
           aria-label={`Open Luma event for ${photo.event}`}
@@ -1055,8 +935,8 @@ function PhotoLinks({
           target="_blank"
           rel="noreferrer"
         >
-          {isCaption ? 'Luma' : 'Luma event'}
-          <ExternalLink size={isCaption ? 10 : 13} aria-hidden="true" />
+          {isLightbox ? 'Luma event' : 'Luma'}
+          <ExternalLink size={isLightbox ? 13 : 11} aria-hidden="true" />
         </a>
       ) : null}
       <a
@@ -1066,8 +946,8 @@ function PhotoLinks({
         target="_blank"
         rel="noreferrer"
       >
-        {isCaption ? 'LinkedIn' : 'LinkedIn recap'}
-        <ExternalLink size={isCaption ? 10 : 13} aria-hidden="true" />
+        {isLightbox ? 'LinkedIn recap' : 'LinkedIn'}
+        <ExternalLink size={isLightbox ? 13 : 11} aria-hidden="true" />
       </a>
     </div>
   )
