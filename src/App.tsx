@@ -393,7 +393,7 @@ function Hero() {
   return (
     <section
       id="top"
-      className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 sm:px-6 sm:py-18 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-20"
+      className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-20 xl:grid-cols-[1.05fr_0.95fr]"
     >
       <div>
         <div className="flex flex-col gap-5 min-[520px]:flex-row min-[520px]:items-center">
@@ -405,7 +405,7 @@ function Hero() {
             height="160"
           />
           <div className="min-w-0">
-            <h1 className="max-w-3xl text-5xl font-semibold leading-[1.04] text-[#111827] sm:text-6xl lg:text-7xl">
+            <h1 className="max-w-3xl whitespace-nowrap text-5xl font-semibold leading-[1.04] text-[#111827] sm:text-6xl">
               Junho Kong
             </h1>
             <p className="mt-4 text-xl font-semibold text-[#24314a] sm:text-2xl">
