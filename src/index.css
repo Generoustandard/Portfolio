@@ -18,9 +18,9 @@
   body {
     margin: 0;
     min-width: 320px;
-    background: #0f1115;
+    background: #f7f7f3;
     font-family: var(--font-sans);
-    color: #172033;
+    color: #202123;
     letter-spacing: 0;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -42,7 +42,7 @@
   }
 
   ::selection {
-    background: #263247;
-    color: #f4f7fb;
+    background: #dbe7ff;
+    color: #202123;
   }
 }

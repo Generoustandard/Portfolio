@@ -7,7 +7,6 @@ import {
   ExternalLink,
   Globe2,
   Music2,
-  Network,
   Sparkles,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
@@ -77,6 +76,7 @@ const threads: PortfolioThread[] = [
       'A public-safe manufacturing AI platform case study focused on traceable workflows.',
       'Open-source agent evaluation and creative AI experiments.',
       'Documentation and localization workflows for Korean developer experience.',
+      'Public activity evidence across Codex-facing community work and PseudoLab builder projects.',
     ],
     dxSignal: [
       'Build something useful.',
@@ -257,37 +257,6 @@ const threads: PortfolioThread[] = [
     ],
     links: [{ label: 'View repository', href: docsKrUrl }],
     note: 'Ongoing experiment / MVP stage. Supporting project under iteration.',
-  },
-  {
-    id: 'activity',
-    file: '06-activity-evidence.md',
-    title: 'Public Activity Evidence',
-    subtitle: 'Codex activities and PseudoLab builder ecosystem context.',
-    status: 'evidence',
-    icon: Network,
-    intro:
-      'Public posts and photos are grouped to make the difference clear: Codex-facing developer community work is separate from PseudoLab builder ecosystem activity.',
-    role: 'Builder / Community-facing Engineer',
-    context:
-      'The activity evidence supports the portfolio story without replacing project substance.',
-    built: [
-      'Codex / AI Developer Community activities for onboarding and practical AI developer workflows.',
-      'PseudoLab / Builder Ecosystem activities for project collaboration, talks, hackathons, and builder practice.',
-      'A public-safe evidence trail using only public posts and sanitized event photos.',
-    ],
-    dxSignal: [
-      'Shows feedback loops with real builders.',
-      'Separates ambassador-led Codex activity from PseudoLab project and community roots.',
-      'Keeps community evidence tied to developer adoption, not generic event organizing.',
-    ],
-    focus: [
-      'Public Evidence',
-      'Codex Community',
-      'PseudoLab',
-      'Builder Ecosystem',
-    ],
-    note:
-      'Event and partner names appear as public activity references only.',
   },
 ]
 
@@ -478,8 +447,8 @@ function App() {
     threads.find((thread) => thread.id === activeThreadId) ?? threads[0]
 
   return (
-    <main className="min-h-screen bg-[#0f1115] text-[#172033]">
-      <div className="flex min-h-screen w-full flex-col overflow-hidden bg-[#0f1115]">
+    <main className="min-h-screen bg-[#f7f7f3] text-[#202123]">
+      <div className="flex min-h-screen w-full flex-col overflow-hidden bg-[#f7f7f3]">
         <TopBar />
         <IntroPanel />
         <ThreadWorkspace
@@ -495,18 +464,18 @@ function App() {
 
 function TopBar() {
   return (
-    <header className="flex items-center justify-between border-b border-white/10 bg-[#15171c] px-4 py-3">
+    <header className="flex items-center justify-between border-b border-[#deded8] bg-[#fbfbf8] px-4 py-3">
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-1.5" aria-hidden="true">
           <span className="h-2.5 w-2.5 rounded-full bg-[#ff6b6b]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#f5c542]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#58c98b]" />
         </div>
-        <span className="hidden font-mono text-xs font-semibold text-[#8d96a6] sm:inline">
+        <span className="hidden font-mono text-xs font-semibold text-[#5f6368] sm:inline">
           junho-kong.dx
         </span>
       </div>
-      <span className="font-mono text-xs font-semibold text-[#707988]">
+      <span className="font-mono text-xs font-semibold text-[#7a7a74]">
         portfolio.workspace
       </span>
     </header>
@@ -515,33 +484,33 @@ function TopBar() {
 
 function IntroPanel() {
   return (
-    <section className="grid gap-6 border-b border-white/10 bg-[#0f1115] p-5 sm:p-6 lg:grid-cols-[minmax(0,0.96fr)_minmax(22rem,1fr)] lg:p-8">
+    <section className="grid gap-6 border-b border-[#deded8] bg-[#f7f7f3] p-5 sm:p-6 lg:grid-cols-[minmax(0,0.96fr)_minmax(22rem,1fr)] lg:p-8">
       <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
         <img
-          className="h-28 w-28 rounded-full border-4 border-[#1d2533] object-cover shadow-xl shadow-black/30 ring-1 ring-white/20 sm:h-32 sm:w-32"
+          className="h-28 w-28 rounded-full border-4 border-white object-cover shadow-xl shadow-[#d6d6ce] ring-1 ring-[#c9c9c2] sm:h-32 sm:w-32"
           src={profilePhotoUrl}
           alt="Junho Kong profile portrait"
           width="128"
           height="128"
         />
         <div className="min-w-0">
-          <h1 className="whitespace-nowrap text-4xl font-semibold leading-none text-white sm:text-5xl">
+          <h1 className="whitespace-nowrap text-4xl font-semibold leading-none text-[#202123] sm:text-5xl">
             Junho Kong
           </h1>
-          <p className="mt-3 text-lg font-semibold leading-7 text-[#e8ebf0]">
+          <p className="mt-3 text-lg font-semibold leading-7 text-[#343541]">
             Developer Experience-oriented AI Platform Engineer
           </p>
-          <p className="mt-3 max-w-2xl text-base leading-7 text-[#a2aab7]">
+          <p className="mt-3 max-w-2xl text-base leading-7 text-[#5f6368]">
             I build practical developer experiences around frontier AI.
           </p>
         </div>
       </div>
 
-      <div className="rounded-lg border border-white/10 bg-[#15171c] p-4">
-        <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#7bd88f]">
+      <div className="rounded-lg border border-[#deded8] bg-[#fbfbf8] p-4 shadow-sm">
+        <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#0f766e]">
           active mission
         </p>
-        <p className="mt-3 text-lg font-semibold leading-7 text-white">
+        <p className="mt-3 text-lg font-semibold leading-7 text-[#202123]">
           Turn AI capability into workflows developers can understand, trust,
           and adopt.
         </p>
@@ -552,7 +521,7 @@ function IntroPanel() {
             'Open-source AI Builder',
           ].map((item) => (
             <span
-              className="rounded-md border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm font-semibold text-[#e8ebf0]"
+              className="rounded-md border border-[#deded8] bg-white px-3 py-1.5 text-sm font-semibold text-[#343541]"
               key={item}
             >
               {item}
@@ -575,7 +544,7 @@ function ThreadWorkspace({
 }) {
   return (
     <section
-      className="grid min-h-[650px] flex-1 bg-[#0f1115] lg:grid-cols-[18rem_minmax(0,1fr)]"
+      className="grid min-h-[650px] flex-1 bg-[#f7f7f3] lg:grid-cols-[18rem_minmax(0,1fr)]"
       aria-label="Portfolio thread workspace"
     >
       <ThreadSidebar
@@ -595,10 +564,10 @@ function ThreadSidebar({
   onSelectThread: (threadId: string) => void
 }) {
   return (
-    <aside className="border-b border-white/10 bg-[#101216] lg:border-b-0 lg:border-r">
+    <aside className="border-b border-[#deded8] bg-[#f1f1ed] lg:border-b-0 lg:border-r">
       <div className="hidden p-4 lg:block">
         <QuickLinks />
-        <p className="mb-3 mt-5 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#707988]">
+        <p className="mb-3 mt-5 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#7a7a74]">
           Threads
         </p>
         <div className="space-y-2">
@@ -614,7 +583,7 @@ function ThreadSidebar({
         </div>
       </div>
 
-      <div className="border-b border-white/10 p-3 lg:hidden">
+      <div className="border-b border-[#deded8] p-3 lg:hidden">
         <QuickLinks compact />
       </div>
 
@@ -640,7 +609,7 @@ function QuickLinks({ compact = false }: { compact?: boolean }) {
   return (
     <div>
       <p
-        className={`font-mono text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#707988] ${
+        className={`font-mono text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#7a7a74] ${
           compact ? 'sr-only' : 'mb-3'
         }`}
       >
@@ -649,7 +618,7 @@ function QuickLinks({ compact = false }: { compact?: boolean }) {
       <div className={compact ? 'flex gap-2 overflow-x-auto' : 'space-y-2'}>
         {contactLinks.map((link) => (
           <a
-            className={`inline-flex items-center justify-between gap-3 rounded-md border border-white/10 bg-white/[0.03] text-sm font-semibold text-[#e8ebf0] transition hover:border-[#6ea8ff]/50 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#6ea8ff] ${
+            className={`inline-flex items-center justify-between gap-3 rounded-md border border-[#deded8] bg-white text-sm font-semibold text-[#343541] transition hover:border-[#8ea7db] hover:bg-[#f6f8ff] hover:text-[#202123] focus:outline-none focus:ring-2 focus:ring-[#4f7cff] ${
               compact
                 ? 'min-w-max px-3 py-2'
                 : 'w-full px-3 py-2'
@@ -692,21 +661,21 @@ function ThreadButton({
           : 'w-full rounded-lg border p-3'
       } ${
         isActive
-          ? 'border-[#4a7dff]/70 bg-[#1d2533] text-white'
-          : 'border-white/10 bg-white/[0.025] text-[#a2aab7] hover:border-[#6ea8ff]/40 hover:bg-white/[0.05] hover:text-white'
+          ? 'border-[#8ea7db] bg-[#e9f0ff] text-[#202123]'
+          : 'border-[#deded8] bg-white/70 text-[#5f6368] hover:border-[#8ea7db] hover:bg-[#f6f8ff] hover:text-[#202123]'
       }`}
       onClick={() => onSelectThread(thread.id)}
       type="button"
     >
       <span className="flex items-center gap-2">
-        <span className="font-mono text-[0.68rem] font-semibold text-[#7bd88f]">
+        <span className="font-mono text-[0.68rem] font-semibold text-[#0f766e]">
           {String(index).padStart(2, '0')}
         </span>
         <Icon size={15} aria-hidden="true" />
         <span className="truncate text-sm font-semibold">{thread.title}</span>
       </span>
       {!compact ? (
-        <span className="mt-1 block truncate font-mono text-xs text-[#707988]">
+        <span className="mt-1 block truncate font-mono text-xs text-[#7a7a74]">
           {thread.file}
         </span>
       ) : null}
@@ -716,13 +685,13 @@ function ThreadButton({
 
 function ThreadMain({ thread }: { thread: PortfolioThread }) {
   return (
-    <article className="min-w-0 bg-[#0f1115]">
-      <div className="border-b border-white/10 bg-[#12151a] px-5 py-3">
+    <article className="min-w-0 bg-[#f7f7f3]">
+      <div className="border-b border-[#deded8] bg-[#ececea] px-5 py-3">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <span className="font-mono text-xs font-semibold text-[#8d96a6]">
+          <span className="font-mono text-xs font-semibold text-[#5f6368]">
             {thread.file}
           </span>
-          <span className="rounded-md border border-[#58c98b]/40 bg-[#58c98b]/10 px-2.5 py-1 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#7bd88f]">
+          <span className="rounded-md border border-[#9fd8bd] bg-[#eefaf3] px-2.5 py-1 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#0f766e]">
             {thread.status}
           </span>
         </div>
@@ -730,13 +699,13 @@ function ThreadMain({ thread }: { thread: PortfolioThread }) {
 
       <div className="space-y-5 p-5 sm:p-6 lg:p-7">
         <div>
-          <h2 className="text-3xl font-semibold leading-tight text-white sm:text-4xl">
+          <h2 className="text-3xl font-semibold leading-tight text-[#202123] sm:text-4xl">
             {thread.title}
           </h2>
-          <p className="mt-3 text-lg font-semibold leading-7 text-[#6ea8ff]">
+          <p className="mt-3 text-lg font-semibold leading-7 text-[#2857a8]">
             {thread.subtitle}
           </p>
-          <p className="mt-4 max-w-3xl text-base leading-7 text-[#c6cbd3]">
+          <p className="mt-4 max-w-3xl text-base leading-7 text-[#5f6368]">
             {thread.intro}
           </p>
         </div>
@@ -747,13 +716,13 @@ function ThreadMain({ thread }: { thread: PortfolioThread }) {
           <ListBlock label="DX signal" items={thread.dxSignal} />
         </div>
 
-        {thread.id === 'activity' ? <ActivityEvidence /> : null}
+        {thread.id === 'overview' ? <ActivityEvidence /> : null}
 
-        <div className="rounded-lg border border-white/10 bg-[#15171c] p-4">
+        <div className="rounded-lg border border-[#deded8] bg-[#fbfbf8] p-4 shadow-sm">
           <div className="flex flex-wrap gap-2">
             {thread.focus.map((item) => (
               <span
-                className="rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs font-semibold text-[#e8ebf0]"
+                className="rounded-md border border-[#deded8] bg-white px-2.5 py-1 text-xs font-semibold text-[#343541]"
                 key={item}
               >
                 {item}
@@ -766,7 +735,7 @@ function ThreadMain({ thread }: { thread: PortfolioThread }) {
           <div className="flex flex-wrap gap-3">
             {thread.links.map((link) => (
               <a
-                className="inline-flex items-center gap-2 rounded-md bg-[#4a7dff] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#3a67db] focus:outline-none focus:ring-2 focus:ring-[#6ea8ff]"
+                className="inline-flex items-center gap-2 rounded-md bg-[#202123] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#343541] focus:outline-none focus:ring-2 focus:ring-[#4f7cff]"
                 href={link.href}
                 key={link.href}
                 target="_blank"
@@ -785,26 +754,26 @@ function ThreadMain({ thread }: { thread: PortfolioThread }) {
 
 function MessageBlock({ label, value }: { label: string; value: string }) {
   return (
-    <section className="rounded-lg border border-white/10 bg-[#15171c] p-4">
-      <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#7bd88f]">
+    <section className="rounded-lg border border-[#deded8] bg-[#fbfbf8] p-4 shadow-sm">
+      <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#0f766e]">
         {label}
       </p>
-      <p className="mt-3 text-base leading-7 text-[#e8ebf0]">{value}</p>
+      <p className="mt-3 text-base leading-7 text-[#343541]">{value}</p>
     </section>
   )
 }
 
 function ListBlock({ label, items }: { label: string; items: string[] }) {
   return (
-    <section className="rounded-lg border border-white/10 bg-[#15171c] p-4">
-      <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#7bd88f]">
+    <section className="rounded-lg border border-[#deded8] bg-[#fbfbf8] p-4 shadow-sm">
+      <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#0f766e]">
         {label}
       </p>
-      <ul className="mt-3 space-y-3 text-sm leading-6 text-[#c6cbd3]">
+      <ul className="mt-3 space-y-3 text-sm leading-6 text-[#5f6368]">
         {items.map((item) => (
           <li className="flex gap-3" key={item}>
             <span
-              className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#6ea8ff]"
+              className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#4f7cff]"
               aria-hidden="true"
             />
             <span>{item}</span>
@@ -817,17 +786,34 @@ function ListBlock({ label, items }: { label: string; items: string[] }) {
 
 function ActivityEvidence() {
   return (
-    <section className="grid gap-4 xl:grid-cols-2">
-      <ActivityGroup
-        title="Codex / AI Developer Community"
-        photos={codexActivityPhotos}
-        activities={codexActivityLinks}
-      />
-      <ActivityGroup
-        title="PseudoLab / Builder Ecosystem"
-        photos={pseudoLabActivityPhotos}
-        activities={pseudoLabActivityLinks}
-      />
+    <section className="space-y-4" aria-labelledby="activity-evidence-title">
+      <div>
+        <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#0f766e]">
+          evidence
+        </p>
+        <h3
+          className="mt-2 text-2xl font-semibold text-[#202123]"
+          id="activity-evidence-title"
+        >
+          Public Activity Evidence
+        </h3>
+        <p className="mt-2 max-w-3xl text-sm leading-6 text-[#5f6368]">
+          Public posts and photos are grouped to separate Codex-facing
+          developer community work from PseudoLab builder ecosystem activity.
+        </p>
+      </div>
+      <div className="grid gap-4 xl:grid-cols-2">
+        <ActivityGroup
+          title="Codex / AI Developer Community"
+          photos={codexActivityPhotos}
+          activities={codexActivityLinks}
+        />
+        <ActivityGroup
+          title="PseudoLab / Builder Ecosystem"
+          photos={pseudoLabActivityPhotos}
+          activities={pseudoLabActivityLinks}
+        />
+      </div>
     </section>
   )
 }
@@ -842,12 +828,12 @@ function ActivityGroup({
   activities: ActivityLink[]
 }) {
   return (
-    <div className="rounded-lg border border-white/10 bg-[#15171c] p-4">
-      <h3 className="text-lg font-semibold text-white">{title}</h3>
-      <div className="mt-4 grid grid-cols-3 gap-2">
+    <div className="rounded-lg border border-[#deded8] bg-[#fbfbf8] p-4 shadow-sm">
+      <h4 className="text-lg font-semibold text-[#202123]">{title}</h4>
+      <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">
         {photos.map((photo) => (
           <figure
-            className="overflow-hidden rounded-md border border-white/10 bg-[#0f1115]"
+            className="overflow-hidden rounded-md border border-[#deded8] bg-white"
             key={photo.src}
           >
             <img
@@ -856,14 +842,14 @@ function ActivityGroup({
               alt={photo.alt}
               loading="lazy"
             />
-            <figcaption className="border-t border-white/10 px-2 py-1.5">
-              <span className="block font-mono text-[10px] font-semibold text-[#7bd88f]">
+            <figcaption className="border-t border-[#deded8] px-2 py-1.5">
+              <span className="block font-mono text-[10px] font-semibold text-[#0f766e]">
                 {photo.year}
               </span>
-              <span className="block truncate text-[10px] font-semibold leading-4 text-[#e8ebf0]">
+              <span className="block truncate text-[10px] font-semibold leading-4 text-[#343541]">
                 {photo.event}
               </span>
-              <span className="block truncate text-[10px] leading-4 text-[#8d96a6]">
+              <span className="block truncate text-[10px] leading-4 text-[#7a7a74]">
                 {photo.context}
               </span>
             </figcaption>
@@ -873,24 +859,24 @@ function ActivityGroup({
       <div className="mt-4 space-y-2">
         {activities.map((activity) => (
           <a
-            className="block rounded-md border border-white/10 bg-white/[0.03] p-3 transition hover:border-[#6ea8ff]/50 focus:outline-none focus:ring-2 focus:ring-[#6ea8ff]"
+            className="block rounded-md border border-[#deded8] bg-white p-3 transition hover:border-[#8ea7db] hover:bg-[#f6f8ff] focus:outline-none focus:ring-2 focus:ring-[#4f7cff]"
             href={activity.href}
             key={activity.href}
             target="_blank"
             rel="noreferrer"
           >
-            <span className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-[#7bd88f]">
+            <span className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-[#0f766e]">
               {activity.theme}
             </span>
-            <span className="mt-1 flex items-start justify-between gap-3 text-sm font-semibold text-white">
+            <span className="mt-1 flex items-start justify-between gap-3 text-sm font-semibold text-[#202123]">
               {activity.title}
               <ExternalLink
-                className="mt-0.5 flex-none text-[#8d96a6]"
+                className="mt-0.5 flex-none text-[#7a7a74]"
                 size={14}
                 aria-hidden="true"
               />
             </span>
-            <span className="mt-1 block text-xs leading-5 text-[#a2aab7]">
+            <span className="mt-1 block text-xs leading-5 text-[#5f6368]">
               {activity.context}
             </span>
           </a>
@@ -902,7 +888,7 @@ function ActivityGroup({
 
 function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-[#0f1115] px-4 py-3 text-xs leading-5 text-[#707988] sm:px-6 lg:px-8">
+    <footer className="border-t border-[#deded8] bg-[#f7f7f3] px-4 py-3 text-xs leading-5 text-[#7a7a74] sm:px-6 lg:px-8">
       <div className="flex flex-col justify-between gap-2 sm:flex-row">
         <span>Personal portfolio of Junho Kong.</span>
         <span>
