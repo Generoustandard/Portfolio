@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   ArrowRight,
   BookOpenCheck,
@@ -6,28 +7,32 @@ import {
   ExternalLink,
   GitBranch,
   Globe2,
-  Layers3,
   Music2,
   Network,
   Sparkles,
-  Workflow,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
-type Project = {
+type LinkItem = {
+  label: string
+  href: string
+}
+
+type PortfolioThread = {
+  id: string
+  file: string
   title: string
   subtitle: string
-  description: string
-  role: string
-  focus: string
-  tags: string[]
+  status: string
   icon: LucideIcon
-  href?: string
-  linkLabel?: string
-  status?: string
-  disclaimer?: string
-  principles?: string[]
-  priority: 'primary' | 'supporting'
+  intro: string
+  role: string
+  context: string
+  built: string[]
+  dxSignal: string[]
+  focus: string[]
+  links?: LinkItem[]
+  note?: string
 }
 
 type ActivityLink = {
@@ -47,102 +52,243 @@ type ActivityPhoto = {
 
 const githubUrl = 'https://github.com/Generoustandard'
 const codexCommunityUrl = 'https://codex-community-korea.lovable.app/'
+const scienceLeaderboardUrl =
+  'https://github.com/Generoustandard/Science-Agent-Leaderboard'
+const bonUrl = 'https://github.com/Generoustandard/Bon'
+const docsKrUrl =
+  'https://github.com/Generoustandard/Codex-Community-Docs-KR'
 const assetBaseUrl = import.meta.env.BASE_URL
 const profilePhotoUrl = `${assetBaseUrl}profile/junho-kong.jpeg`
 
-const projects: Project[] = [
+const threads: PortfolioThread[] = [
   {
+    id: 'overview',
+    file: '00-overview.md',
+    title: 'Overview',
+    subtitle: 'Developer experience around frontier AI.',
+    status: 'open',
+    icon: Sparkles,
+    intro:
+      'I build practical developer experiences around frontier AI, connecting community onboarding, platform architecture, agent evaluation, and creative AI builder projects.',
+    role: 'Developer Experience-oriented AI Platform Engineer',
+    context:
+      'My work sits between real AI systems and the people trying to adopt them: developers, builders, researchers, and platform users.',
+    built: [
+      'Developer onboarding surfaces for Korean Codex builders.',
+      'A public-safe manufacturing AI platform case study focused on traceable workflows.',
+      'Open-source agent evaluation and creative AI experiments.',
+      'Documentation and localization workflows for Korean developer experience.',
+    ],
+    dxSignal: [
+      'Build something useful.',
+      'Explain the workflow clearly.',
+      'Share with developers and communities.',
+      'Collect feedback.',
+      'Improve the product, docs, and onboarding flow.',
+    ],
+    focus: [
+      'Developer onboarding',
+      'AI platform architecture',
+      'Agent evaluation',
+      'Documentation loops',
+    ],
+    links: [
+      { label: 'GitHub', href: githubUrl },
+      { label: 'Codex Community Korea', href: codexCommunityUrl },
+    ],
+    note:
+      'This portfolio is public-safe. It does not include confidential manufacturing data, internal system names, or private screenshots.',
+  },
+  {
+    id: 'codex',
+    file: '01-codex-community.md',
     title: 'Codex Community Korea',
-    subtitle: 'Developer onboarding hub for Korean Codex builders',
-    description:
+    subtitle: 'Developer onboarding hub for Korean Codex builders.',
+    status: 'shipping',
+    icon: Globe2,
+    intro:
       'Built an ambassador-led community hub to help Korean developers discover Codex resources, events, workshops, and practical agentic coding workflows.',
     role: 'Builder / Codex Ambassador',
-    focus:
-      'Developer onboarding, community adoption, Korean developer ecosystem, Codex learning resources',
-    tags: ['Developer Onboarding', 'Codex', 'Korean Dev Ecosystem'],
-    icon: Globe2,
-    href: codexCommunityUrl,
-    linkLabel: 'Visit live hub',
-    disclaimer:
+    context:
+      'Korean developers needed a clearer path from curiosity about Codex to hands-on agentic coding practice.',
+    built: [
+      'A live community hub for resources, events, workshops, and onboarding.',
+      'Learning surfaces that connect Codex concepts to practical developer workflows.',
+      'Public activity loops through workshops, recaps, and community feedback.',
+    ],
+    dxSignal: [
+      'Turns a new AI capability into an approachable developer journey.',
+      'Connects documentation, examples, community feedback, and real adoption behavior.',
+      'Supports Korean-first developer onboarding without presenting itself as an official OpenAI site.',
+    ],
+    focus: [
+      'Developer Onboarding',
+      'Codex',
+      'Korean Developer Ecosystem',
+      'Community Adoption',
+    ],
+    links: [{ label: 'Visit live hub', href: codexCommunityUrl }],
+    note:
       'Ambassador-led community initiative. Not an official OpenAI website.',
-    priority: 'primary',
   },
   {
+    id: 'on-platform',
+    file: '02-on-platform.ts',
     title: 'On-Platform',
-    subtitle: 'Manufacturing-first AI analysis platform',
-    description:
+    subtitle: 'Manufacturing-first AI analysis platform.',
+    status: 'case-study',
+    icon: Boxes,
+    intro:
       'Designed a manufacturing-first AI analysis platform concept that connects data management, modeling, visualization, RAG, memory, report generation, and LLM orchestration into a traceable workflow.',
     role: 'Architect / Builder',
-    focus:
-      'AI platform architecture, LLM orchestration, evidence-backed workflows, Korean-first UX, manufacturing AI',
-    tags: ['AI Platform', 'LLM Orchestration', 'Evidence-backed'],
-    icon: Boxes,
-    principles: [
-      'Every run should be traceable by run_id.',
-      'Every output should be registered as an artifact.',
-      'Reports and chatbot answers should be backed by evidence.',
-      'LLMs should act as orchestration coordinators, not blind calculators.',
-      'User-facing surfaces should support Korean-first workflows.',
+    context:
+      'Industrial AI workflows need evidence, traceability, and user-facing surfaces that help people trust results rather than just receive model output.',
+    built: [
+      'A workflow model where every run is traceable by run_id.',
+      'An artifact registration pattern for outputs, reports, and generated results.',
+      'Evidence-backed report and chatbot answer flows.',
+      'A Korean-first UX direction for practical manufacturing AI workflows.',
     ],
-    disclaimer:
+    dxSignal: [
+      'Treats LLMs as orchestration coordinators, not blind calculators.',
+      'Connects platform architecture with developer-facing trust surfaces.',
+      'Frames complex AI workflows as inspectable steps, artifacts, and evidence.',
+    ],
+    focus: [
+      'AI Platform',
+      'LLM Orchestration',
+      'Evidence-backed Workflows',
+      'Korean-first UX',
+    ],
+    note:
       'Public-safe summary based on synthetic scenarios. No confidential manufacturing data or internal system details included.',
-    priority: 'primary',
   },
   {
+    id: 'science-agent',
+    file: '03-science-agent.eval',
     title: 'Science Agent Leaderboard',
-    subtitle: 'Evaluating agent workflows beyond accuracy',
-    description:
+    subtitle: 'Evaluating agent workflows beyond accuracy.',
+    status: 'early-mvp',
+    icon: BrainCircuit,
+    intro:
       'Leading an open-source project to evaluate scientific problem-solving agents not only by correctness, but also by workflow design, tool usage, cost, and reproducibility.',
     role: 'Project Lead / Architect',
-    focus:
-      'Agent evaluation, benchmark design, leaderboard systems, reproducibility, tool usage, cost-aware evaluation',
-    tags: ['Agent Evaluation', 'Benchmark Design', 'Open-source'],
-    icon: BrainCircuit,
-    href: 'https://github.com/Generoustandard/Science-Agent-Leaderboard',
-    linkLabel: 'View repository',
-    status: 'Early MVP / in progress',
-    priority: 'primary',
+    context:
+      'Agent benchmarks should help builders understand how a result was reached, how expensive it was, and whether the workflow can be reproduced.',
+    built: [
+      'An evaluation direction for correctness, workflow design, tool usage, cost, and reproducibility.',
+      'Leaderboard system planning for scientific problem-solving agents.',
+      'A PseudoLab project loop for collaborative builder feedback and iteration.',
+    ],
+    dxSignal: [
+      'Makes agent behavior easier to compare and debug.',
+      'Turns benchmark design into a developer-facing evaluation surface.',
+      'Keeps the project clearly marked as in progress rather than a completed benchmark.',
+    ],
+    focus: [
+      'Agent Evaluation',
+      'Benchmark Design',
+      'Open-source',
+      'Cost-aware Evaluation',
+    ],
+    links: [{ label: 'View repository', href: scienceLeaderboardUrl }],
+    note: 'Early MVP / in progress.',
   },
   {
-    title: 'Bon',
-    subtitle: 'Creative AI music UX',
-    description:
-      'Led product direction and interaction design for a visual-to-music creation experience, combining rule-based mappings with AI-assisted recommendations.',
-    role: 'Lead / Creative Experience Planner',
-    focus:
-      'Creative AI UX, team leadership, Copilot-style creation, rule-based mapping, AI-assisted recommendations',
-    tags: ['Creative AI', 'Music UX', 'AI-assisted'],
+    id: 'builder',
+    file: '04-builder-experiments.md',
+    title: 'Builder Experiments',
+    subtitle: 'Creative AI UX and practical AI builder work.',
+    status: 'supporting',
     icon: Music2,
-    href: 'https://github.com/Generoustandard/Bon',
-    linkLabel: 'View repository',
-    disclaimer:
-      'Rule-based creative music system with AI-assisted recommendations.',
-    priority: 'supporting',
+    intro:
+      'Explored creative AI interfaces and builder ecosystem projects that connect product direction, interaction design, and Copilot-style workflows.',
+    role: 'Lead / Creative Experience Planner',
+    context:
+      'Not every developer experience is a documentation site. Creative tools also need clear control, suggestions, feedback, and understandable AI assistance.',
+    built: [
+      'Bon, a visual-to-music creation experience.',
+      'Rule-based creative music mappings with AI-assisted recommendations.',
+      'Copilot-style interaction planning for music composition.',
+      'PseudoLab and hackathon builder activities that strengthened the public builder loop.',
+    ],
+    dxSignal: [
+      'Frames AI as an assistant inside a human-controlled creative workflow.',
+      'Connects interface planning, team leadership, and practical builder execution.',
+      'Avoids overstating the work as a foundation model or fully automated generation system.',
+    ],
+    focus: [
+      'Creative AI UX',
+      'Copilot-style Creation',
+      'Rule-based Mapping',
+      'AI-assisted Recommendations',
+    ],
+    links: [{ label: 'View Bon repository', href: bonUrl }],
+    note:
+      'Bon is a rule-based creative music system with AI-assisted recommendations.',
   },
   {
+    id: 'docs',
+    file: '05-docs-kr.review',
     title: 'Codex-Community-Docs-KR',
-    subtitle: 'Early MVP for Korean documentation evaluation',
-    description:
+    subtitle: 'Early MVP for Korean documentation evaluation.',
+    status: 'mvp-stage',
+    icon: BookOpenCheck,
+    intro:
       'Built an early MVP to explore Korean translation quality evaluation for OpenAI-related documentation workflows through paragraph alignment, candidate generation, rewrite, evaluation, human review, and reviewed golden sets.',
     role: 'Builder',
-    focus:
-      'Documentation quality, localization, LLM-based evaluation, human-in-the-loop review, Korean developer experience',
-    tags: ['Localization', 'Documentation Quality', 'MVP'],
-    icon: BookOpenCheck,
-    href: 'https://github.com/Generoustandard/Codex-Community-Docs-KR',
-    linkLabel: 'View repository',
-    status: 'Ongoing experiment / MVP stage',
-    disclaimer: 'Supporting project under review and iteration.',
-    priority: 'supporting',
+    context:
+      'Korean developer adoption depends on docs that are accurate, readable, reviewed, and connected to real human feedback.',
+    built: [
+      'Paragraph alignment and candidate generation workflow exploration.',
+      'LLM-assisted rewrite and evaluation steps.',
+      'Human-in-the-loop review direction with reviewed golden sets.',
+    ],
+    dxSignal: [
+      'Treats localization as a product quality and developer adoption problem.',
+      'Combines automated evaluation with human review instead of relying on unchecked output.',
+      'Keeps the project clearly positioned as an ongoing MVP experiment.',
+    ],
+    focus: [
+      'Documentation Quality',
+      'Localization',
+      'LLM-based Evaluation',
+      'Human Review',
+    ],
+    links: [{ label: 'View repository', href: docsKrUrl }],
+    note: 'Ongoing experiment / MVP stage. Supporting project under iteration.',
   },
-]
-
-const loopSteps = [
-  'Build practical demos and tools',
-  'Explain complex workflows clearly',
-  'Share with developers and communities',
-  'Collect feedback',
-  'Improve the product, documentation, and onboarding flow',
+  {
+    id: 'activity',
+    file: '06-activity-evidence.md',
+    title: 'Public Activity Evidence',
+    subtitle: 'Codex activities and PseudoLab builder ecosystem context.',
+    status: 'evidence',
+    icon: Network,
+    intro:
+      'Public posts and photos are grouped to make the difference clear: Codex-facing developer community work is separate from PseudoLab builder ecosystem activity.',
+    role: 'Builder / Community-facing Engineer',
+    context:
+      'The activity evidence supports the portfolio story without replacing project substance.',
+    built: [
+      'Codex / AI Developer Community activities for onboarding and practical AI developer workflows.',
+      'PseudoLab / Builder Ecosystem activities for project collaboration, talks, hackathons, and builder practice.',
+      'A public-safe evidence trail using only public posts and sanitized event photos.',
+    ],
+    dxSignal: [
+      'Shows feedback loops with real builders.',
+      'Separates ambassador-led Codex activity from PseudoLab project and community roots.',
+      'Keeps community evidence tied to developer adoption, not generic event organizing.',
+    ],
+    focus: [
+      'Public Evidence',
+      'Codex Community',
+      'PseudoLab',
+      'Builder Ecosystem',
+    ],
+    note:
+      'Event and partner names appear as public activity references only.',
+  },
 ]
 
 const codexActivityLinks: ActivityLink[] = [
@@ -318,65 +464,51 @@ const pseudoLabActivityPhotos: ActivityPhoto[] = [
   },
 ]
 
-const contactLinks = [
-  { label: 'GitHub', href: githubUrl, icon: GitBranch },
-  { label: 'Codex Community Korea', href: codexCommunityUrl, icon: Globe2 },
-  {
-    label: 'Science Agent Leaderboard',
-    href: 'https://github.com/Generoustandard/Science-Agent-Leaderboard',
-    icon: BrainCircuit,
-  },
-  {
-    label: 'Bon',
-    href: 'https://github.com/Generoustandard/Bon',
-    icon: Music2,
-  },
-  {
-    label: 'Codex-Community-Docs-KR',
-    href: 'https://github.com/Generoustandard/Codex-Community-Docs-KR',
-    icon: BookOpenCheck,
-  },
+const contactLinks: LinkItem[] = [
+  { label: 'GitHub', href: githubUrl },
+  { label: 'Codex Community Korea', href: codexCommunityUrl },
+  { label: 'Science Agent Leaderboard', href: scienceLeaderboardUrl },
+  { label: 'Bon', href: bonUrl },
+  { label: 'Codex-Community-Docs-KR', href: docsKrUrl },
 ]
 
 function App() {
+  const [activeThreadId, setActiveThreadId] = useState(threads[0].id)
+  const activeThread =
+    threads.find((thread) => thread.id === activeThreadId) ?? threads[0]
+
   return (
-    <main className="min-h-screen bg-[#f7f8fb] text-[#172033]">
-      <Header />
-      <Hero />
-      <About />
-      <Projects />
-      <PublicActivityEvidence />
-      <DeveloperExperienceLoop />
-      <WhyDeveloperExperience />
-      <Contact />
+    <main className="min-h-screen bg-[#eef2f7] px-4 py-5 text-[#172033] sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl overflow-hidden rounded-xl border border-[#c7d0df] bg-[#0b1020] shadow-2xl shadow-[#172033]/15">
+        <TopBar />
+        <IntroPanel />
+        <ThreadWorkspace
+          activeThread={activeThread}
+          activeThreadId={activeThreadId}
+          onSelectThread={setActiveThreadId}
+        />
+      </div>
       <Footer />
     </main>
   )
 }
 
-function Header() {
+function TopBar() {
   return (
-    <header className="border-b border-[#d8deea] bg-[#f7f8fb]/95">
-      <nav
-        className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-6 lg:px-8"
-        aria-label="Primary navigation"
-      >
-        <a href="#top" className="text-sm font-semibold text-[#172033]">
-          DX Portfolio
-        </a>
-        <div className="hidden items-center gap-6 text-sm text-[#4d5b73] md:flex">
-          <a className="hover:text-[#1959ff]" href="#about">
-            About
-          </a>
-          <a className="hover:text-[#1959ff]" href="#projects">
-            Projects
-          </a>
-          <a className="hover:text-[#1959ff]" href="#dx-loop">
-            DX Loop
-          </a>
+    <header className="flex items-center justify-between border-b border-white/10 bg-[#111827] px-4 py-3">
+      <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1.5" aria-hidden="true">
+          <span className="h-2.5 w-2.5 rounded-full bg-[#ff6b6b]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#f5c542]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#20c997]" />
         </div>
+        <span className="hidden font-mono text-xs font-semibold text-[#8fa1c1] sm:inline">
+          junho-kong.dx
+        </span>
+      </div>
+      <nav className="flex items-center gap-2" aria-label="Primary links">
         <a
-          className="inline-flex items-center gap-2 rounded-md border border-[#b9c4d6] bg-white px-3 py-2 text-sm font-semibold text-[#172033] shadow-sm transition hover:border-[#1959ff] hover:text-[#1959ff] focus:outline-none focus:ring-2 focus:ring-[#1959ff] focus:ring-offset-2"
+          className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/[0.04] px-3 py-2 text-sm font-semibold text-[#dbe7ff] transition hover:border-[#8bd7ff]/60 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#8bd7ff]"
           href={githubUrl}
           target="_blank"
           rel="noreferrer"
@@ -384,420 +516,319 @@ function Header() {
           <GitBranch size={16} aria-hidden="true" />
           GitHub
         </a>
+        <a
+          className="hidden items-center gap-2 rounded-md bg-[#2f6bff] px-3 py-2 text-sm font-semibold text-white transition hover:bg-[#2558dd] focus:outline-none focus:ring-2 focus:ring-[#8bd7ff] sm:inline-flex"
+          href={codexCommunityUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Globe2 size={16} aria-hidden="true" />
+          Codex Community
+        </a>
       </nav>
     </header>
   )
 }
 
-function Hero() {
+function IntroPanel() {
   return (
-    <section
-      id="top"
-      className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-20 xl:grid-cols-[1.05fr_0.95fr]"
-    >
-      <div>
-        <div className="flex flex-col gap-5 min-[520px]:flex-row min-[520px]:items-center">
-          <img
-            className="h-32 w-32 rounded-full border-4 border-white object-cover shadow-xl shadow-[#1959ff]/15 ring-1 ring-[#c6d2e5] sm:h-36 sm:w-36 lg:h-40 lg:w-40"
-            src={profilePhotoUrl}
-            alt="Junho Kong profile portrait"
-            width="160"
-            height="160"
-          />
-          <div className="min-w-0">
-            <h1 className="max-w-3xl whitespace-nowrap text-5xl font-semibold leading-[1.04] text-[#111827] sm:text-6xl">
-              Junho Kong
-            </h1>
-            <p className="mt-4 text-xl font-semibold text-[#24314a] sm:text-2xl">
-              Developer Experience-oriented AI Platform Engineer
-            </p>
-          </div>
+    <section className="grid gap-6 border-b border-white/10 bg-[#0b1020] p-5 sm:p-6 lg:grid-cols-[minmax(0,0.96fr)_minmax(22rem,1fr)] lg:p-8">
+      <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
+        <img
+          className="h-28 w-28 rounded-full border-4 border-[#18233a] object-cover shadow-xl shadow-black/30 ring-1 ring-white/20 sm:h-32 sm:w-32"
+          src={profilePhotoUrl}
+          alt="Junho Kong profile portrait"
+          width="128"
+          height="128"
+        />
+        <div className="min-w-0">
+          <h1 className="whitespace-nowrap text-4xl font-semibold leading-none text-white sm:text-5xl">
+            Junho Kong
+          </h1>
+          <p className="mt-3 text-lg font-semibold leading-7 text-[#dbe7ff]">
+            Developer Experience-oriented AI Platform Engineer
+          </p>
+          <p className="mt-3 max-w-2xl text-base leading-7 text-[#9fb0cc]">
+            I build practical developer experiences around frontier AI.
+          </p>
         </div>
-        <div className="mt-6 flex flex-wrap gap-2">
+      </div>
+
+      <div className="rounded-lg border border-white/10 bg-[#111827] p-4">
+        <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#78f0c4]">
+          active mission
+        </p>
+        <p className="mt-3 text-lg font-semibold leading-7 text-white">
+          Turn AI capability into workflows developers can understand, trust,
+          and adopt.
+        </p>
+        <div className="mt-5 flex flex-wrap gap-2">
           {[
             'Manufacturing AI Platform',
             'Codex Ambassador',
             'Open-source AI Builder',
-          ].map((label) => (
+          ].map((item) => (
             <span
-              className="rounded-md border border-[#c6d2e5] bg-white px-3 py-1.5 text-sm font-semibold text-[#1959ff] shadow-sm"
-              key={label}
+              className="rounded-md border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm font-semibold text-[#dbe7ff]"
+              key={item}
             >
-              {label}
+              {item}
             </span>
           ))}
         </div>
-        <p className="mt-6 max-w-2xl text-lg leading-8 text-[#44526a]">
-          I build practical developer experiences around frontier AI, from
-          Korean Codex community onboarding to industrial AI platforms, agent
-          evaluation, and creative AI builder projects.
-        </p>
-        <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-          <a
-            className="inline-flex items-center justify-center gap-2 rounded-md bg-[#1959ff] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#0f46d9] focus:outline-none focus:ring-2 focus:ring-[#1959ff] focus:ring-offset-2"
-            href="#projects"
-          >
-            View Projects
-            <ArrowRight size={16} aria-hidden="true" />
-          </a>
-          <a
-            className="inline-flex items-center justify-center gap-2 rounded-md border border-[#b9c4d6] bg-white px-5 py-3 text-sm font-semibold text-[#172033] shadow-sm transition hover:border-[#1959ff] hover:text-[#1959ff] focus:outline-none focus:ring-2 focus:ring-[#1959ff] focus:ring-offset-2"
-            href={githubUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <GitBranch size={16} aria-hidden="true" />
-            GitHub
-          </a>
-          <a
-            className="inline-flex items-center justify-center gap-2 rounded-md border border-[#b9c4d6] bg-white px-5 py-3 text-sm font-semibold text-[#172033] shadow-sm transition hover:border-[#1959ff] hover:text-[#1959ff] focus:outline-none focus:ring-2 focus:ring-[#1959ff] focus:ring-offset-2"
-            href={codexCommunityUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Globe2 size={16} aria-hidden="true" />
-            Codex Community Korea
-          </a>
-        </div>
       </div>
-
-      <aside
-        className="overflow-hidden rounded-lg border border-[#1e2b45] bg-[#0b1020] text-white shadow-xl shadow-[#101828]/20"
-        aria-label="Developer experience workbench summary"
-      >
-        <div className="flex items-center justify-between border-b border-white/10 bg-[#111827] px-4 py-3">
-          <div className="flex items-center gap-2">
-            <span className="h-2.5 w-2.5 rounded-full bg-[#ff6b6b]" />
-            <span className="h-2.5 w-2.5 rounded-full bg-[#f5c542]" />
-            <span className="h-2.5 w-2.5 rounded-full bg-[#20c997]" />
-          </div>
-          <span className="text-xs font-medium text-[#aab8d4]">
-            dx-workbench.codex
-          </span>
-        </div>
-        <div className="grid md:grid-cols-[8.5rem_1fr]">
-          <div className="border-b border-white/10 bg-[#0f172a] p-4 md:border-b-0 md:border-r">
-            <p className="mb-3 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#7184a6]">
-              Workspace
-            </p>
-            <div className="grid gap-1.5 text-sm md:block md:space-y-1.5">
-              {['community.md', 'platform.ts', 'agents.eval', 'docs.kr'].map(
-                (file, index) => (
-                  <div
-                    className={`rounded-md px-2.5 py-2 font-mono ${
-                      index === 0
-                        ? 'bg-[#18233a] text-white'
-                        : 'text-[#8fa1c1]'
-                    }`}
-                    key={file}
-                  >
-                    {file}
-                  </div>
-                ),
-              )}
-            </div>
-          </div>
-          <div className="p-4 sm:p-5">
-            <div className="flex flex-col gap-3 border-b border-white/10 pb-4 sm:flex-row sm:items-start sm:justify-between">
-              <div>
-                <p className="font-mono text-xs font-semibold text-[#8bd7ff]">
-                  run_id: dx-frontier-ai-001
-                </p>
-                <h2 className="mt-3 text-2xl font-semibold leading-tight text-white">
-                  DX Workbench
-                </h2>
-                <p className="mt-3 text-sm leading-6 text-[#c9d5ea]">
-                  A compact map of the developer-facing work: onboarding,
-                  platform architecture, evaluation, and documentation loops.
-                </p>
-              </div>
-              <span className="inline-flex w-fit items-center rounded-md border border-[#20c997]/40 bg-[#20c997]/10 px-2.5 py-1 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#78f0c4]">
-                public-safe
-              </span>
-            </div>
-
-            <div className="mt-4 rounded-md border border-white/10 bg-[#060b16] p-3 font-mono text-xs leading-6 text-[#b9c7df]">
-              <p>
-                <span className="text-[#8bd7ff]">task</span> turn frontier AI
-                into practical developer workflows
-              </p>
-              <p>
-                <span className="text-[#8bd7ff]">mode</span> build - explain -
-                ship - learn
-              </p>
-            </div>
-
-            <div className="mt-4 space-y-2.5">
-              {[
-                ['done', 'Codex onboarding', 'Korean builder community'],
-                [
-                  'done',
-                  'Industrial AI platform',
-                  'Traceable synthetic case study',
-                ],
-                [
-                  'running',
-                  'Agent evaluation',
-                  'Cost-aware reproducible workflows',
-                ],
-                ['review', 'Docs localization', 'Human-in-the-loop Korean DX'],
-              ].map(([status, title, detail]) => (
-                <div
-                  className="grid grid-cols-[4.5rem_1fr] gap-3 rounded-md border border-white/10 bg-white/[0.03] p-3"
-                  key={title}
-                >
-                  <span
-                    className={`font-mono text-[0.68rem] font-semibold uppercase tracking-[0.12em] ${
-                      status === 'done'
-                        ? 'text-[#78f0c4]'
-                        : status === 'running'
-                          ? 'text-[#8bd7ff]'
-                          : 'text-[#f5c542]'
-                    }`}
-                  >
-                    {status}
-                  </span>
-                  <div>
-                    <p className="text-sm font-semibold text-white">{title}</p>
-                    <p className="text-sm text-[#aab8d4]">{detail}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </aside>
     </section>
   )
 }
 
-function About() {
+function ThreadWorkspace({
+  activeThread,
+  activeThreadId,
+  onSelectThread,
+}: {
+  activeThread: PortfolioThread
+  activeThreadId: string
+  onSelectThread: (threadId: string) => void
+}) {
   return (
     <section
-      id="about"
-      className="border-y border-[#d8deea] bg-white px-5 py-14 sm:px-6 lg:px-8"
+      className="grid min-h-[650px] bg-[#0b1020] lg:grid-cols-[17rem_minmax(0,1fr)] xl:grid-cols-[17rem_minmax(0,1fr)_18rem]"
+      aria-label="Portfolio thread workspace"
     >
-      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.7fr_1.3fr]">
-        <SectionHeading
-          icon={Sparkles}
-          title="About"
-          subtitle="Builder first, community-facing by design."
-        />
-        <div className="space-y-5 text-lg leading-8 text-[#44526a]">
-          <p>
-            I am an AI platform engineer with experience designing manufacturing
-            AI workflows and building developer-facing community projects around
-            Codex and OpenAI-related technologies.
-          </p>
-          <p>
-            My strength is connecting real-world AI platform architecture with
-            developer experience: demos, tools, documentation workflows,
-            onboarding content, and feedback loops that help developers adopt
-            new AI workflows.
-          </p>
-        </div>
-      </div>
+      <ThreadSidebar
+        activeThreadId={activeThreadId}
+        onSelectThread={onSelectThread}
+      />
+      <ThreadMain thread={activeThread} />
+      <ThreadInspector thread={activeThread} />
     </section>
   )
 }
 
-function Projects() {
+function ThreadSidebar({
+  activeThreadId,
+  onSelectThread,
+}: {
+  activeThreadId: string
+  onSelectThread: (threadId: string) => void
+}) {
   return (
-    <section id="projects" className="px-5 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
-        <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
-          <SectionHeading
-            icon={Layers3}
-            title="Featured Projects"
-            subtitle="Public-safe work that shows platform thinking, developer surfaces, and builder momentum."
-          />
-          <p className="max-w-md text-sm leading-6 text-[#5c6a82]">
-            Ordered by relevance for Developer Experience: community onboarding,
-            manufacturing AI platform architecture, agent evaluation, then
-            supporting creative and documentation experiments.
-          </p>
-        </div>
-
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-12">
-          {projects.map((project, index) => (
-            <ProjectCard index={index} key={project.title} project={project} />
+    <aside className="border-b border-white/10 bg-[#0f172a] lg:border-b-0 lg:border-r">
+      <div className="hidden p-4 lg:block">
+        <p className="mb-3 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#7184a6]">
+          Threads
+        </p>
+        <div className="space-y-2">
+          {threads.map((thread, index) => (
+            <ThreadButton
+              index={index}
+              isActive={thread.id === activeThreadId}
+              key={thread.id}
+              onSelectThread={onSelectThread}
+              thread={thread}
+            />
           ))}
         </div>
       </div>
-    </section>
+
+      <div className="overflow-x-auto p-3 lg:hidden">
+        <div className="flex min-w-max gap-2">
+          {threads.map((thread, index) => (
+            <ThreadButton
+              compact
+              index={index}
+              isActive={thread.id === activeThreadId}
+              key={thread.id}
+              onSelectThread={onSelectThread}
+              thread={thread}
+            />
+          ))}
+        </div>
+      </div>
+    </aside>
   )
 }
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const Icon = project.icon
-  const isLeadProject = index === 0
-  const spanClass = isLeadProject
-    ? 'md:col-span-2 lg:col-span-12'
-    : 'lg:col-span-6'
-  const visualClass =
-    project.priority === 'primary'
-      ? 'border-[#aebbd0] bg-white shadow-sm'
-      : 'border-[#d9dee8] bg-[#fbfcfe]'
+function ThreadButton({
+  thread,
+  index,
+  isActive,
+  onSelectThread,
+  compact = false,
+}: {
+  thread: PortfolioThread
+  index: number
+  isActive: boolean
+  onSelectThread: (threadId: string) => void
+  compact?: boolean
+}) {
+  const Icon = thread.icon
 
   return (
-    <article
-      className={`${spanClass} ${visualClass} flex h-full flex-col rounded-lg border p-6 transition hover:border-[#1959ff]`}
+    <button
+      aria-pressed={isActive}
+      className={`group text-left transition focus:outline-none focus:ring-2 focus:ring-[#8bd7ff] ${
+        compact
+          ? 'min-w-[13.5rem] rounded-md border px-3 py-3'
+          : 'w-full rounded-lg border p-3'
+      } ${
+        isActive
+          ? 'border-[#2f6bff]/70 bg-[#18233a] text-white'
+          : 'border-white/10 bg-white/[0.025] text-[#9fb0cc] hover:border-[#8bd7ff]/40 hover:bg-white/[0.05] hover:text-white'
+      }`}
+      onClick={() => onSelectThread(thread.id)}
+      type="button"
     >
-      <div
-        className={
-          isLeadProject ? 'grid gap-8 lg:grid-cols-[1.25fr_0.75fr]' : ''
-        }
-      >
+      <span className="flex items-center gap-2">
+        <span className="font-mono text-[0.68rem] font-semibold text-[#78f0c4]">
+          {String(index).padStart(2, '0')}
+        </span>
+        <Icon size={15} aria-hidden="true" />
+        <span className="truncate text-sm font-semibold">{thread.title}</span>
+      </span>
+      {!compact ? (
+        <span className="mt-1 block truncate font-mono text-xs text-[#7184a6]">
+          {thread.file}
+        </span>
+      ) : null}
+    </button>
+  )
+}
+
+function ThreadMain({ thread }: { thread: PortfolioThread }) {
+  return (
+    <article className="min-w-0 bg-[#0b1020]">
+      <div className="border-b border-white/10 bg-[#0d1424] px-5 py-3">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <span className="font-mono text-xs font-semibold text-[#8fa1c1]">
+            {thread.file}
+          </span>
+          <span className="rounded-md border border-[#20c997]/40 bg-[#20c997]/10 px-2.5 py-1 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#78f0c4]">
+            {thread.status}
+          </span>
+        </div>
+      </div>
+
+      <div className="space-y-5 p-5 sm:p-6 lg:p-7">
         <div>
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#eef4ff] text-[#1959ff]">
-                <Icon size={20} aria-hidden="true" />
-              </span>
-              <span className="font-mono text-sm font-semibold text-[#7a879c]">
-                0{index + 1}
-              </span>
-            </div>
-            {project.status ? (
-              <span className="rounded-md border border-[#c8d2e3] bg-white px-2.5 py-1 text-xs font-semibold text-[#40506a]">
-                {project.status}
-              </span>
-            ) : null}
-          </div>
-
-          <h3 className="mt-5 text-2xl font-semibold leading-tight text-[#111827]">
-            {project.title}
-          </h3>
-          <p className="mt-2 text-base font-semibold text-[#1959ff]">
-            {project.subtitle}
+          <h2 className="text-3xl font-semibold leading-tight text-white sm:text-4xl">
+            {thread.title}
+          </h2>
+          <p className="mt-3 text-lg font-semibold leading-7 text-[#8bd7ff]">
+            {thread.subtitle}
           </p>
-          <p className="mt-4 text-base leading-7 text-[#44526a]">
-            {project.description}
+          <p className="mt-4 max-w-3xl text-base leading-7 text-[#c9d5ea]">
+            {thread.intro}
           </p>
-
-          <dl className="mt-6 grid gap-4 text-sm sm:grid-cols-2">
-            <div>
-              <dt className="font-semibold text-[#172033]">Role</dt>
-              <dd className="mt-1 leading-6 text-[#5c6a82]">{project.role}</dd>
-            </div>
-            <div>
-              <dt className="font-semibold text-[#172033]">Focus</dt>
-              <dd className="mt-1 leading-6 text-[#5c6a82]">{project.focus}</dd>
-            </div>
-          </dl>
         </div>
 
-        <div className={isLeadProject ? 'mt-8 lg:mt-0' : ''}>
-          <div className="mt-6 flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
+        <MessageBlock label="context" value={thread.context} />
+        <div className="grid gap-4 lg:grid-cols-2">
+          <ListBlock label="what I built" items={thread.built} />
+          <ListBlock label="DX signal" items={thread.dxSignal} />
+        </div>
+
+        {thread.id === 'activity' ? <ActivityEvidence /> : null}
+
+        <div className="rounded-lg border border-white/10 bg-[#111827] p-4">
+          <div className="flex flex-wrap gap-2">
+            {thread.focus.map((item) => (
               <span
-                className="rounded-md border border-[#c8d2e3] bg-[#f7f9fc] px-2.5 py-1 text-xs font-semibold text-[#40506a]"
-                key={tag}
+                className="rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs font-semibold text-[#dbe7ff]"
+                key={item}
               >
-                {tag}
+                {item}
               </span>
             ))}
           </div>
-
-          {project.principles ? (
-            <ul className="mt-6 space-y-3 border-t border-[#d9dee8] pt-5 text-sm leading-6 text-[#44526a]">
-              {project.principles.map((principle) => (
-                <li className="flex gap-3" key={principle}>
-                  <span
-                    className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#20a486]"
-                    aria-hidden="true"
-                  />
-                  <span>{principle}</span>
-                </li>
-              ))}
-            </ul>
-          ) : null}
-
-          {project.disclaimer ? (
-            <p className="mt-6 border-l-2 border-[#20a486] pl-4 text-sm leading-6 text-[#5c6a82]">
-              {project.disclaimer}
-            </p>
-          ) : null}
-
-          {project.href ? (
-            <a
-              className="mt-6 inline-flex items-center gap-2 rounded-md border border-[#b9c4d6] bg-white px-4 py-2.5 text-sm font-semibold text-[#172033] shadow-sm transition hover:border-[#1959ff] hover:text-[#1959ff] focus:outline-none focus:ring-2 focus:ring-[#1959ff] focus:ring-offset-2"
-              href={project.href}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {project.linkLabel ?? 'Open project'}
-              <ExternalLink size={15} aria-hidden="true" />
-            </a>
-          ) : null}
         </div>
+
+        {thread.links?.length ? (
+          <div className="flex flex-wrap gap-3">
+            {thread.links.map((link) => (
+              <a
+                className="inline-flex items-center gap-2 rounded-md bg-[#2f6bff] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#2558dd] focus:outline-none focus:ring-2 focus:ring-[#8bd7ff]"
+                href={link.href}
+                key={link.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {link.label}
+                <ExternalLink size={15} aria-hidden="true" />
+              </a>
+            ))}
+          </div>
+        ) : null}
       </div>
     </article>
   )
 }
 
-function PublicActivityEvidence() {
+function MessageBlock({ label, value }: { label: string; value: string }) {
   return (
-    <section className="border-y border-[#d8deea] bg-white px-5 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
-        <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
-          <SectionHeading
-            icon={ExternalLink}
-            title="Public Activity Evidence"
-            subtitle="LinkedIn posts grouped by Codex-facing work and PseudoLab builder ecosystem activity."
-          />
-          <div>
-            <p className="text-base leading-7 text-[#44526a]">
-              These posts are included as public context for the work behind the
-              portfolio. They support the builder story without replacing the
-              core project summaries.
-            </p>
-            <p className="mt-3 text-sm leading-6 text-[#5c6a82]">
-              Event and partner names appear as public activity references only.
-              Codex Community Korea remains an ambassador-led community
-              initiative, not an official OpenAI website.
-            </p>
-          </div>
-        </div>
+    <section className="rounded-lg border border-white/10 bg-[#111827] p-4">
+      <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#78f0c4]">
+        {label}
+      </p>
+      <p className="mt-3 text-base leading-7 text-[#dbe7ff]">{value}</p>
+    </section>
+  )
+}
 
-        <div className="mt-9 grid gap-10 lg:grid-cols-2">
-          <ActivityGroup
-            title="Codex / AI Developer Community"
-            description="Evidence for Codex onboarding, agentic coding workshops, AI engineering notes, and developer community activity."
-            activities={codexActivityLinks}
-            photos={codexActivityPhotos}
-          />
-          <ActivityGroup
-            title="PseudoLab / Builder Ecosystem"
-            description="Community roots, PseudoLab projects, talks, hackathons, and builder activities that shaped the public-facing developer work."
-            activities={pseudoLabActivityLinks}
-            photos={pseudoLabActivityPhotos}
-          />
-        </div>
-      </div>
+function ListBlock({ label, items }: { label: string; items: string[] }) {
+  return (
+    <section className="rounded-lg border border-white/10 bg-[#111827] p-4">
+      <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#78f0c4]">
+        {label}
+      </p>
+      <ul className="mt-3 space-y-3 text-sm leading-6 text-[#c9d5ea]">
+        {items.map((item) => (
+          <li className="flex gap-3" key={item}>
+            <span
+              className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[#8bd7ff]"
+              aria-hidden="true"
+            />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
+function ActivityEvidence() {
+  return (
+    <section className="grid gap-4 xl:grid-cols-2">
+      <ActivityGroup
+        title="Codex / AI Developer Community"
+        photos={codexActivityPhotos}
+        activities={codexActivityLinks}
+      />
+      <ActivityGroup
+        title="PseudoLab / Builder Ecosystem"
+        photos={pseudoLabActivityPhotos}
+        activities={pseudoLabActivityLinks}
+      />
     </section>
   )
 }
 
 function ActivityGroup({
   title,
-  description,
-  activities,
   photos,
+  activities,
 }: {
   title: string
-  description: string
-  activities: ActivityLink[]
   photos: ActivityPhoto[]
+  activities: ActivityLink[]
 }) {
   return (
-    <div>
-      <h3 className="text-xl font-semibold text-[#111827]">{title}</h3>
-      <p className="mt-2 text-sm leading-6 text-[#5c6a82]">{description}</p>
-      <div className="mt-5 grid grid-cols-3 gap-2">
+    <div className="rounded-lg border border-white/10 bg-[#111827] p-4">
+      <h3 className="text-lg font-semibold text-white">{title}</h3>
+      <div className="mt-4 grid grid-cols-3 gap-2">
         {photos.map((photo) => (
           <figure
-            className="overflow-hidden rounded-md border border-[#d9dee8] bg-white"
+            className="overflow-hidden rounded-md border border-white/10 bg-[#0b1020]"
             key={photo.src}
           >
             <img
@@ -806,213 +837,131 @@ function ActivityGroup({
               alt={photo.alt}
               loading="lazy"
             />
-            <figcaption className="border-t border-[#d9dee8] px-2 py-1.5">
-              <span className="mb-1 inline-flex rounded-sm bg-[#eef4ff] px-1.5 py-0.5 text-[10px] font-semibold leading-none text-[#1959ff]">
+            <figcaption className="border-t border-white/10 px-2 py-1.5">
+              <span className="block font-mono text-[10px] font-semibold text-[#78f0c4]">
                 {photo.year}
               </span>
-              <span className="block text-[10px] font-semibold leading-4 text-[#172033]">
+              <span className="block truncate text-[10px] font-semibold leading-4 text-[#dbe7ff]">
                 {photo.event}
               </span>
-              <span className="block text-[10px] leading-4 text-[#5c6a82]">
+              <span className="block truncate text-[10px] leading-4 text-[#8fa1c1]">
                 {photo.context}
               </span>
             </figcaption>
           </figure>
         ))}
       </div>
-      <div className="mt-5 grid gap-3">
+      <div className="mt-4 space-y-2">
         {activities.map((activity) => (
-          <ActivityCard activity={activity} key={activity.href} />
+          <a
+            className="block rounded-md border border-white/10 bg-white/[0.03] p-3 transition hover:border-[#8bd7ff]/50 focus:outline-none focus:ring-2 focus:ring-[#8bd7ff]"
+            href={activity.href}
+            key={activity.href}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-[#78f0c4]">
+              {activity.theme}
+            </span>
+            <span className="mt-1 flex items-start justify-between gap-3 text-sm font-semibold text-white">
+              {activity.title}
+              <ExternalLink
+                className="mt-0.5 flex-none text-[#8fa1c1]"
+                size={14}
+                aria-hidden="true"
+              />
+            </span>
+            <span className="mt-1 block text-xs leading-5 text-[#9fb0cc]">
+              {activity.context}
+            </span>
+          </a>
         ))}
       </div>
     </div>
   )
 }
 
-function ActivityCard({
-  activity,
-}: {
-  activity: ActivityLink
-}) {
+function ThreadInspector({ thread }: { thread: PortfolioThread }) {
   return (
-    <a
-      className="group rounded-lg border border-[#d9dee8] bg-[#fbfcfe] p-4 transition hover:border-[#1959ff] focus:outline-none focus:ring-2 focus:ring-[#1959ff] focus:ring-offset-2"
-      href={activity.href}
-      target="_blank"
-      rel="noreferrer"
-    >
-      <div className="flex items-start justify-between gap-4">
-        <span className="rounded-md border border-[#c8d2e3] bg-white px-2.5 py-1 text-xs font-semibold text-[#40506a]">
-          {activity.theme}
-        </span>
-        <ExternalLink
-          className="mt-1 text-[#7a879c] transition group-hover:text-[#1959ff]"
-          size={15}
-          aria-hidden="true"
-        />
-      </div>
-      <h3 className="mt-4 text-base font-semibold leading-6 text-[#111827] group-hover:text-[#1959ff]">
-        {activity.title}
-      </h3>
-      <p className="mt-2 text-sm leading-6 text-[#5c6a82]">
-        {activity.context}
-      </p>
-    </a>
-  )
-}
-
-function DeveloperExperienceLoop() {
-  return (
-    <section
-      id="dx-loop"
-      className="border-y border-[#d8deea] bg-[#101828] px-5 py-16 text-white sm:px-6 lg:px-8"
-    >
-      <div className="mx-auto max-w-6xl">
-        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-          <SectionHeading
-            icon={Workflow}
-            title="My Developer Experience Loop"
-            subtitle="The same operating model across platform, community, and open-source work."
-            inverted
-          />
-          <p className="text-lg leading-8 text-[#c9d5ea]">
-            Across my platform, community, and open-source work, I focus on the
-            same loop required for Developer Experience: build something useful,
-            make it understandable, put it in front of developers, learn from
-            feedback, and improve the workflow.
+    <aside className="border-t border-white/10 bg-[#0f172a] p-5 xl:border-l xl:border-t-0">
+      <div className="sticky top-5 space-y-4">
+        <section className="rounded-lg border border-white/10 bg-[#111827] p-4">
+          <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#7184a6]">
+            role
           </p>
-        </div>
-
-        <ol className="mt-10 grid gap-4 md:grid-cols-5">
-          {loopSteps.map((step, index) => (
-            <li
-              className="rounded-lg border border-white/15 bg-white/[0.04] p-4"
-              key={step}
-            >
-              <span className="font-mono text-sm font-semibold text-[#20c997]">
-                0{index + 1}
-              </span>
-              <p className="mt-3 text-sm font-semibold leading-6 text-white">
-                {step}
-              </p>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
-  )
-}
-
-function WhyDeveloperExperience() {
-  return (
-    <section className="px-5 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.7fr_1.3fr]">
-        <SectionHeading
-          icon={Network}
-          title="Why Developer Experience"
-          subtitle="Adoption is an engineering problem and a communication problem."
-        />
-        <div className="space-y-5 text-lg leading-8 text-[#44526a]">
-          <p>
-            I enjoy turning advanced AI capabilities into practical workflows
-            developers can understand, trust, and adopt.
+          <p className="mt-3 text-sm font-semibold leading-6 text-white">
+            {thread.role}
           </p>
-          <p>
-            Through manufacturing AI platform work, Codex Ambassador activities,
-            and open-source builder projects, I have learned that adoption
-            depends not only on model capability, but also on onboarding,
-            examples, documentation, trust, reproducibility, and community
-            feedback.
-          </p>
-        </div>
-      </div>
-    </section>
-  )
-}
+        </section>
 
-function Contact() {
-  return (
-    <section
-      id="contact"
-      className="border-t border-[#d8deea] bg-white px-5 py-16 sm:px-6 lg:px-8"
-    >
-      <div className="mx-auto max-w-6xl">
-        <SectionHeading
-          icon={ExternalLink}
-          title="Contact / Links"
-          subtitle="Public links for projects and community work."
-        />
-        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {contactLinks.map((link) => {
-            const Icon = link.icon
-            return (
+        {thread.note ? (
+          <section className="rounded-lg border border-[#20c997]/25 bg-[#20c997]/[0.06] p-4">
+            <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#78f0c4]">
+              public note
+            </p>
+            <p className="mt-3 text-sm leading-6 text-[#c9d5ea]">
+              {thread.note}
+            </p>
+          </section>
+        ) : null}
+
+        <section className="rounded-lg border border-white/10 bg-[#111827] p-4">
+          <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#7184a6]">
+            quick links
+          </p>
+          <div className="mt-3 space-y-2">
+            {contactLinks.map((link) => (
               <a
-                className="flex items-center justify-between gap-4 rounded-lg border border-[#d9dee8] bg-[#fbfcfe] p-4 text-sm font-semibold text-[#172033] transition hover:border-[#1959ff] hover:text-[#1959ff] focus:outline-none focus:ring-2 focus:ring-[#1959ff] focus:ring-offset-2"
+                className="flex items-center justify-between gap-3 rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm font-semibold text-[#dbe7ff] transition hover:border-[#8bd7ff]/50 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#8bd7ff]"
                 href={link.href}
-                key={link.label}
+                key={link.href}
                 target="_blank"
                 rel="noreferrer"
               >
-                <span className="flex items-center gap-3">
-                  <Icon size={18} aria-hidden="true" />
-                  {link.label}
-                </span>
-                <ExternalLink size={15} aria-hidden="true" />
+                <span>{link.label}</span>
+                <ArrowRight size={14} aria-hidden="true" />
               </a>
-            )
-          })}
-        </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="rounded-lg border border-white/10 bg-[#111827] p-4">
+          <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#7184a6]">
+            operating loop
+          </p>
+          <ol className="mt-3 space-y-2 text-sm leading-6 text-[#c9d5ea]">
+            {[
+              'Build demos and tools',
+              'Explain workflows',
+              'Share with developers',
+              'Collect feedback',
+              'Improve onboarding',
+            ].map((step, index) => (
+              <li className="flex gap-2" key={step}>
+                <span className="font-mono text-[#78f0c4]">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <span>{step}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
       </div>
-    </section>
+    </aside>
   )
 }
 
 function Footer() {
   return (
-    <footer className="bg-[#f7f8fb] px-5 py-8 text-sm text-[#5c6a82] sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
-        Personal portfolio of Junho Kong. Codex Community Korea is an
-        ambassador-led community initiative and not an official OpenAI website.
+    <footer className="mx-auto max-w-7xl px-2 py-5 text-sm leading-6 text-[#516078]">
+      <div className="flex flex-col justify-between gap-2 sm:flex-row">
+        <span>Personal portfolio of Junho Kong.</span>
+        <span>
+          Codex Community Korea is an ambassador-led community initiative and
+          not an official OpenAI website.
+        </span>
       </div>
     </footer>
-  )
-}
-
-function SectionHeading({
-  icon: Icon,
-  title,
-  subtitle,
-  inverted = false,
-}: {
-  icon: LucideIcon
-  title: string
-  subtitle: string
-  inverted?: boolean
-}) {
-  return (
-    <div>
-      <div
-        className={`mb-4 inline-flex h-10 w-10 items-center justify-center rounded-md ${
-          inverted ? 'bg-white/10 text-[#20c997]' : 'bg-[#eef4ff] text-[#1959ff]'
-        }`}
-      >
-        <Icon size={20} aria-hidden="true" />
-      </div>
-      <h2
-        className={`text-3xl font-semibold leading-tight sm:text-4xl ${
-          inverted ? 'text-white' : 'text-[#111827]'
-        }`}
-      >
-        {title}
-      </h2>
-      <p
-        className={`mt-3 max-w-xl text-base leading-7 ${
-          inverted ? 'text-[#c9d5ea]' : 'text-[#5c6a82]'
-        }`}
-      >
-        {subtitle}
-      </p>
-    </div>
   )
 }
 

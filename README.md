@@ -1,6 +1,7 @@
-# Junho Kong — Developer Experience Portfolio
+# Junho Kong - Developer Experience Portfolio
 
 This is a personal portfolio site for Developer Experience and AI builder work.
+The interface is structured as a Codex-inspired thread workspace so interviewers can scan Junho's projects by topic.
 
 ## Focus
 
