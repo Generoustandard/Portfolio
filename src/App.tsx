@@ -48,6 +48,8 @@ type ActivityPhoto = {
   year: string
   event: string
   context: string
+  eventHref?: string
+  reviewHref: string
 }
 
 const githubUrl = 'https://github.com/Generoustandard'
@@ -59,6 +61,35 @@ const docsKrUrl =
   'https://github.com/Generoustandard/Codex-Community-Docs-KR'
 const assetBaseUrl = import.meta.env.BASE_URL
 const profilePhotoUrl = `${assetBaseUrl}profile/junho-kong.jpeg`
+const lumaEventUrls = {
+  codexMeetup: 'https://luma.com/hdwrnztq',
+  robertWalters: 'https://luma.com/64ztqype',
+  searchOsSkillathon: 'https://luma.com/nlvl7fww',
+} as const
+const linkedInRecapUrls = {
+  codexSkillathon:
+    'https://www.linkedin.com/posts/junho-kong_codex-skillathon-ai-activity-7461671528787496960-ciHK',
+  elev8:
+    'https://www.linkedin.com/posts/junho-kong_elev8-openai-codexcommunitykorea-activity-7460133915027148801-ZZsK',
+  codexAiEngineering:
+    'https://www.linkedin.com/posts/junho-kong_ai-codex-aiengineering-activity-7449428527592148992-S5N_',
+  openAiCodexDeveloperCommunity:
+    'https://www.linkedin.com/posts/junho-kong_openai-codex-developercommunity-activity-7436287028834484224-Q4w0',
+  buildersNight:
+    'https://www.linkedin.com/posts/junho-kong_qootfosmyqvosqs-pseudolab-codexcommunitykorea-activity-7463576437690699778-3jvH',
+  scienceAgent:
+    'https://www.linkedin.com/posts/junho-kong_%EA%B0%80%EC%A7%9C%EC%97%B0%EA%B5%AC%EC%86%8C-%EC%97%90%EC%84%9C-%EC%B5%9C%EA%B7%BC-%EB%AA%87%EB%8B%AC%EB%8F%99%EC%95%88-openai-api-%EA%B8%B0%EB%B0%98-science-agent-activity-7464311242212659201-mYHS',
+  nvidia:
+    'https://www.linkedin.com/posts/junho-kong_ai-agent-nvidia-activity-7458304691748098048-YKvZ',
+  multiAgent:
+    'https://www.linkedin.com/posts/junho-kong_multi-agent-%EA%B0%99%EC%9D%80-%EC%A2%8B%EC%9D%80-%EC%97%B0%EA%B2%B0%EA%B3%BC-%EC%97%B4%EC%A0%95%EC%9D%80-%EB%8D%94-%EB%86%92%EC%9D%80-%EC%84%B1%EA%B3%BC%EB%A5%BC-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%83%85%EB%8B%88%EB%8B%A4-activity-7420105919721598976-uyq4',
+  learningInPublic:
+    'https://www.linkedin.com/posts/junho-kong_%ED%96%89%EB%8F%99%EC%97%90%EB%8A%94-%EA%B4%80%EC%84%B1%EC%9D%B4-%EC%9E%88%EA%B3%A0-%EC%9E%91%EC%9D%80-%ED%96%89%EB%8F%99%EC%9D%80-%ED%81%B0-%EA%B4%80%EC%84%B1%EC%9D%84-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%83%85%EB%8B%88%EB%8B%A4-%EA%B7%B8-%EA%B4%80%EC%84%B1%EC%9D%84-activity-7416481268084817923-xQ4M',
+  hackSeoul:
+    'https://www.linkedin.com/posts/junho-kong_hackseoul2025-angelhack-coupang-activity-7392906068139499520-2LIY',
+  pseudoLabGrandGathering:
+    'https://www.linkedin.com/posts/junho-kong_1st-grand-gathering-sudo-pseudo-explorer-activity-7266465444604108801-KqVM',
+} as const
 
 const threads: PortfolioThread[] = [
   {
@@ -264,28 +295,28 @@ const codexActivityLinks: ActivityLink[] = [
     theme: 'Developer Workshop',
     context:
       'Hands-on community activity around Codex, AI workflows, and practical builder learning.',
-    href: 'https://www.linkedin.com/posts/junho-kong_codex-skillathon-ai-activity-7461671528787496960-ciHK',
+    href: linkedInRecapUrls.codexSkillathon,
   },
   {
     title: 'Elev8 Tech Leadership invited session',
     theme: 'Tech Leadership',
     context:
       'Public recap of a Codex Community Korea session that invited Tech Leadership for practical AI developer workflow discussion.',
-    href: 'https://www.linkedin.com/posts/junho-kong_elev8-openai-codexcommunitykorea-activity-7460133915027148801-ZZsK',
+    href: linkedInRecapUrls.elev8,
   },
   {
     title: 'Codex AI engineering notes',
     theme: 'AI Engineering',
     context:
       'Public writing around Codex, AI engineering, and developer workflow adoption.',
-    href: 'https://www.linkedin.com/posts/junho-kong_ai-codex-aiengineering-activity-7449428527592148992-S5N_',
+    href: linkedInRecapUrls.codexAiEngineering,
   },
   {
     title: 'OpenAI Codex developer community note',
     theme: 'Developer Community',
     context:
       'Early public note on Codex community building and developer-facing learning surfaces.',
-    href: 'https://www.linkedin.com/posts/junho-kong_openai-codex-developercommunity-activity-7436287028834484224-Q4w0',
+    href: linkedInRecapUrls.openAiCodexDeveloperCommunity,
   },
 ]
 
@@ -295,49 +326,49 @@ const pseudoLabActivityLinks: ActivityLink[] = [
     theme: 'PseudoLab Talk',
     context:
       'Public talk on how PseudoLab builder activity led into the Codex Community Korea onboarding hub.',
-    href: 'https://www.linkedin.com/posts/junho-kong_qootfosmyqvosqs-pseudolab-codexcommunitykorea-activity-7463576437690699778-3jvH',
+    href: linkedInRecapUrls.buildersNight,
   },
   {
     title: 'Science Agent Leaderboard update',
     theme: 'PseudoLab Project',
     context:
       'PseudoLab open-source project update on science agent evaluation, workflow design, and reproducible builder practice.',
-    href: 'https://www.linkedin.com/posts/junho-kong_%EA%B0%80%EC%A7%9C%EC%97%B0%EA%B5%AC%EC%86%8C-%EC%97%90%EC%84%9C-%EC%B5%9C%EA%B7%BC-%EB%AA%87%EB%8B%AC%EB%8F%99%EC%95%88-openai-api-%EA%B8%B0%EB%B0%98-science-agent-activity-7464311242212659201-mYHS',
+    href: linkedInRecapUrls.scienceAgent,
   },
   {
     title: 'NVIDIA Build-A-Claw AI Agent activity',
     theme: 'AI Agent Builder',
     context:
       'Builder activity connected to AI agents, experimentation, and applied AI workflows.',
-    href: 'https://www.linkedin.com/posts/junho-kong_ai-agent-nvidia-activity-7458304691748098048-YKvZ',
+    href: linkedInRecapUrls.nvidia,
   },
   {
     title: 'Multi-agent builder collaboration',
     theme: 'Builder Collaboration',
     context:
       'Community reflection connected to multi-agent thinking, collaboration, and shared output.',
-    href: 'https://www.linkedin.com/posts/junho-kong_multi-agent-%EA%B0%99%EC%9D%80-%EC%A2%8B%EC%9D%80-%EC%97%B0%EA%B2%B0%EA%B3%BC-%EC%97%B4%EC%A0%95%EC%9D%80-%EB%8D%94-%EB%86%92%EC%9D%80-%EC%84%B1%EA%B3%BC%EB%A5%BC-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%83%85%EB%8B%88%EB%8B%A4-activity-7420105919721598976-uyq4',
+    href: linkedInRecapUrls.multiAgent,
   },
   {
     title: 'Learning-in-public momentum',
     theme: 'Builder Habit',
     context:
       'Reflection on small actions, compounding practice, and consistent community contribution.',
-    href: 'https://www.linkedin.com/posts/junho-kong_%ED%96%89%EB%8F%99%EC%97%90%EB%8A%94-%EA%B4%80%EC%84%B1%EC%9D%B4-%EC%9E%88%EA%B3%A0-%EC%9E%91%EC%9D%80-%ED%96%89%EB%8F%99%EC%9D%80-%ED%81%B0-%EA%B4%80%EC%84%B1%EC%9D%84-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%83%85%EB%8B%88%EB%8B%A4-%EA%B7%B8-%EA%B4%80%EC%84%B1%EC%9D%84-activity-7416481268084817923-xQ4M',
+    href: linkedInRecapUrls.learningInPublic,
   },
   {
     title: 'Hack Seoul 2025 / AngelHack',
     theme: 'Hackathon',
     context:
       'Public activity from hackathon participation and applied builder practice.',
-    href: 'https://www.linkedin.com/posts/junho-kong_hackseoul2025-angelhack-coupang-activity-7392906068139499520-2LIY',
+    href: linkedInRecapUrls.hackSeoul,
   },
   {
     title: 'PseudoLab Grand Gathering',
     theme: 'Community Learning',
     context:
       'Earlier community activity connected to learning, contribution, and builder identity.',
-    href: 'https://www.linkedin.com/posts/junho-kong_1st-grand-gathering-sudo-pseudo-explorer-activity-7266465444604108801-KqVM',
+    href: linkedInRecapUrls.pseudoLabGrandGathering,
   },
 ]
 
@@ -346,8 +377,10 @@ const codexActivityPhotos: ActivityPhoto[] = [
     src: `${assetBaseUrl}activity/codex-meetup.webp`,
     alt: 'Codex Community Korea meetup presentation room',
     year: '2026',
-    event: 'Codex Community Korea 1st Meetup',
+    event: 'OpenAI Codex Community Meetup - Korea',
     context: 'Community onboarding session',
+    eventHref: lumaEventUrls.codexMeetup,
+    reviewHref: linkedInRecapUrls.openAiCodexDeveloperCommunity,
   },
   {
     src: `${assetBaseUrl}activity/codex-elev8.webp`,
@@ -355,6 +388,7 @@ const codexActivityPhotos: ActivityPhoto[] = [
     year: '2026',
     event: 'Elev8 x Codex Community Korea',
     context: 'Tech Leadership invited session',
+    reviewHref: linkedInRecapUrls.elev8,
   },
   {
     src: `${assetBaseUrl}activity/codex-hackathon.webp`,
@@ -362,6 +396,7 @@ const codexActivityPhotos: ActivityPhoto[] = [
     year: '2026',
     event: 'OpenAI x Coxwave Hackathon',
     context: 'Codex builder activity',
+    reviewHref: linkedInRecapUrls.codexAiEngineering,
   },
   {
     src: `${assetBaseUrl}activity/codex-robert-walters.webp`,
@@ -369,6 +404,8 @@ const codexActivityPhotos: ActivityPhoto[] = [
     year: '2026',
     event: 'Robert Walters x Codex Meetup',
     context: 'Community meetup',
+    eventHref: lumaEventUrls.robertWalters,
+    reviewHref: linkedInRecapUrls.openAiCodexDeveloperCommunity,
   },
   {
     src: `${assetBaseUrl}activity/codex-skillathon.webp`,
@@ -376,6 +413,8 @@ const codexActivityPhotos: ActivityPhoto[] = [
     year: '2026',
     event: 'Search OS x Codex Skillathon',
     context: 'Hands-on agentic coding workshop',
+    eventHref: lumaEventUrls.searchOsSkillathon,
+    reviewHref: linkedInRecapUrls.codexSkillathon,
   },
 ]
 
@@ -386,6 +425,7 @@ const pseudoLabActivityPhotos: ActivityPhoto[] = [
     year: '2025',
     event: 'Hack Seoul 2025 / AngelHack',
     context: 'Hackathon builder activity',
+    reviewHref: linkedInRecapUrls.hackSeoul,
   },
   {
     src: `${assetBaseUrl}activity/pseudolab-builder-activity.webp`,
@@ -393,6 +433,7 @@ const pseudoLabActivityPhotos: ActivityPhoto[] = [
     year: '2025',
     event: 'PseudoLab Builder Activity',
     context: 'Builder ecosystem practice',
+    reviewHref: linkedInRecapUrls.multiAgent,
   },
   {
     src: `${assetBaseUrl}activity/pseudolab-conference.webp`,
@@ -400,6 +441,7 @@ const pseudoLabActivityPhotos: ActivityPhoto[] = [
     year: '2025',
     event: 'Pseudo Con 2025 1st',
     context: 'Builder community conference',
+    reviewHref: linkedInRecapUrls.learningInPublic,
   },
   {
     src: `${assetBaseUrl}activity/pseudolab-pseudo-con-2025-2nd.webp`,
@@ -407,6 +449,7 @@ const pseudoLabActivityPhotos: ActivityPhoto[] = [
     year: '2025',
     event: 'Pseudo Con 2025 2nd',
     context: 'Builder community event',
+    reviewHref: linkedInRecapUrls.pseudoLabGrandGathering,
   },
   {
     src: `${assetBaseUrl}activity/pseudolab-builder-activity-2026.webp`,
@@ -414,6 +457,7 @@ const pseudoLabActivityPhotos: ActivityPhoto[] = [
     year: '2026',
     event: 'Science Agent Leaderboard Team',
     context: 'PseudoLab project team',
+    reviewHref: linkedInRecapUrls.scienceAgent,
   },
   {
     src: `${assetBaseUrl}activity/pseudolab-builders-night.webp`,
@@ -421,6 +465,7 @@ const pseudoLabActivityPhotos: ActivityPhoto[] = [
     year: '2026',
     event: "PseudoLab Builder's Night",
     context: 'Talk on builder contribution',
+    reviewHref: linkedInRecapUrls.buildersNight,
   },
   {
     src: `${assetBaseUrl}activity/pseudolab-nvidia.webp`,
@@ -428,6 +473,7 @@ const pseudoLabActivityPhotos: ActivityPhoto[] = [
     year: '2026',
     event: 'NVIDIA Build-A-Claw',
     context: 'AI agent builder activity',
+    reviewHref: linkedInRecapUrls.nvidia,
   },
 ]
 
@@ -900,6 +946,7 @@ function ActivityGroup({
               <span className="block truncate text-[10px] leading-4 text-[#7a7a74]">
                 {photo.context}
               </span>
+              <PhotoLinks photo={photo} variant="caption" />
             </figcaption>
           </figure>
         ))}
@@ -962,6 +1009,7 @@ function PhotoLightbox({
               {photo.event}
             </h4>
             <p className="mt-1 text-sm text-[#5f6368]">{photo.context}</p>
+            <PhotoLinks photo={photo} variant="lightbox" />
           </div>
           <button
             aria-label="Close expanded photo"
@@ -981,6 +1029,46 @@ function PhotoLightbox({
           />
         </div>
       </div>
+    </div>
+  )
+}
+
+function PhotoLinks({
+  photo,
+  variant,
+}: {
+  photo: ActivityPhoto
+  variant: 'caption' | 'lightbox'
+}) {
+  const isCaption = variant === 'caption'
+  const linkClass = isCaption
+    ? 'inline-flex items-center gap-1 rounded border border-[#deded8] bg-[#f7f7f3] px-1.5 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.08em] text-[#2857a8] transition hover:border-[#8ea7db] hover:bg-[#f6f8ff] focus:outline-none focus:ring-2 focus:ring-[#4f7cff]'
+    : 'inline-flex items-center gap-1.5 rounded-md border border-[#deded8] bg-white px-3 py-2 text-xs font-semibold text-[#343541] transition hover:bg-[#f1f1ed] focus:outline-none focus:ring-2 focus:ring-[#4f7cff]'
+
+  return (
+    <div className={isCaption ? 'mt-2 flex flex-wrap gap-1.5' : 'mt-3 flex flex-wrap gap-2'}>
+      {photo.eventHref ? (
+        <a
+          aria-label={`Open Luma event for ${photo.event}`}
+          className={linkClass}
+          href={photo.eventHref}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {isCaption ? 'Luma' : 'Luma event'}
+          <ExternalLink size={isCaption ? 10 : 13} aria-hidden="true" />
+        </a>
+      ) : null}
+      <a
+        aria-label={`Open LinkedIn recap for ${photo.event}`}
+        className={linkClass}
+        href={photo.reviewHref}
+        target="_blank"
+        rel="noreferrer"
+      >
+        {isCaption ? 'LinkedIn' : 'LinkedIn recap'}
+        <ExternalLink size={isCaption ? 10 : 13} aria-hidden="true" />
+      </a>
     </div>
   )
 }
