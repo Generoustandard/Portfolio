@@ -288,7 +288,8 @@ const codexActivityPhotos: ActivityPhoto[] = [
     alt: 'Codex Community Korea meetup presentation room',
     year: '2026',
     event: 'OpenAI Codex Community Meetup - Korea',
-    context: 'Community onboarding session',
+    context:
+      'Planned and hosted the meetup, introduced Codex workflows, and led Korean developer onboarding.',
     eventHref: lumaEventUrls.codexMeetup,
     reviewHref: linkedInRecapUrls.openAiCodexDeveloperCommunity,
   },
