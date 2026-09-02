@@ -33,6 +33,7 @@ type PortfolioThread = {
   focus: string[]
   links?: LinkItem[]
   note?: string
+  researchFoundation?: string[]
 }
 
 type ActivityPhoto = {
@@ -93,16 +94,16 @@ const threads: PortfolioThread[] = [
     status: 'open',
     icon: Sparkles,
     intro:
-      'I build practical developer experiences around frontier AI, connecting community onboarding, platform architecture, agent evaluation, and creative AI builder projects.',
-    role: 'Developer Experience-oriented AI Platform Engineer',
+      'I build full-stack manufacturing AI products, agent evaluation systems, and practical developer experiences around frontier AI.',
+    role: 'Manufacturing AI Platform Engineer / Codex Ambassador / DX-oriented Builder',
     context:
-      'My work sits between real AI systems and the people trying to adopt them: developers, builders, researchers, and platform users.',
+      'My path connects graduate manufacturing AI research, On-Platform at SK On, Korean Codex onboarding, and open-source agent evaluation.',
     built: [
+      'A full-stack manufacturing AI analysis platform that standardizes repeated workflows and supports configurable reuse.',
+      'Research-grade DED monitoring and multi-defect diagnosis pipelines using image preprocessing, time-series analysis, statistics, machine learning, and deep learning.',
       'Developer onboarding surfaces for Korean Codex builders.',
-      'A public-safe manufacturing AI platform case study focused on traceable workflows.',
       'Open-source agent evaluation and creative AI experiments.',
       'Documentation and localization workflows for Korean developer experience.',
-      'Public activity evidence across Codex-facing community work and PseudoLab builder projects.',
     ],
     dxSignal: [
       'Build something useful.',
@@ -151,34 +152,43 @@ const threads: PortfolioThread[] = [
     id: 'on-platform',
     file: '02-on-platform.ts',
     title: 'On-Platform',
-    subtitle: 'Manufacturing-first AI analysis platform.',
-    status: 'case-study',
+    subtitle: 'Full-stack manufacturing AI analysis platform for reusable workflows.',
+    status: 'company-work',
     icon: Boxes,
     intro:
-      'Designed a public-safe manufacturing-first AI analysis platform concept that connects data management, modeling, visualization, RAG, memory, report generation, and LLM orchestration into a traceable workflow.',
-    role: 'Architect / Builder',
+      'At SK On, I build a full-stack manufacturing AI analysis platform that turns repeated data and AI requests into reusable workflows. This portfolio presents the product through sanitized synthetic scenarios.',
+    role: 'Manufacturing AI Platform Engineer at SK On / Product Architect / Full-stack Builder',
     context:
-      'Industrial AI workflows need evidence, traceability, and user-facing surfaces that help people trust results rather than just receive model output.',
+      'Graduate research taught me how to build and validate individual manufacturing AI models. At SK On, I expanded that work into a platform problem: standardize recurring preparation, analysis, modeling, visualization, reporting, and interpretation steps so non-developer users can run, understand, trace, and reuse validated workflows.',
     built: [
-      'A workflow model where every run is traceable by run_id.',
-      'An artifact registration pattern for outputs, reports, and generated results.',
-      'Evidence-backed report and chatbot answer flows.',
-      'A Korean-first UX direction for practical manufacturing AI workflows.',
-      'A synthetic case-study framing with no confidential manufacturing data or internal system details.',
+      'A full-stack AI analysis platform that consolidates scattered manufacturing analysis tasks into reusable workflows.',
+      'A common workflow for data preparation, analysis and modeling, visualization, reporting, and interpretation.',
+      'A configurable workflow and template layer for adapting the platform without building a separate product for every task.',
+      'A non-developer-friendly UX for running, understanding, and reusing analysis workflows.',
+      'Analysis modules for statistical comparison, machine learning, feature importance, 2D and 3D visualization, report generation, and LLM-based Copilot assistance.',
+      'Run and artifact tracking mechanisms that support evidence, review, and reproducibility.',
     ],
     dxSignal: [
-      'Treats LLMs as orchestration coordinators, not blind calculators.',
-      'Connects platform architecture with developer-facing trust surfaces.',
-      'Frames complex AI workflows as inspectable steps, artifacts, and evidence.',
+      'Shows direct ownership of a full-stack AI product, from manufacturing analysis logic to reusable user workflows.',
+      'Connects research-grade model validation with a product that non-developer users can operate and understand.',
+      'Turns fragmented analysis requests into a common platform contract while preserving task-specific flexibility.',
+      'Frames Developer Experience as making complex AI analysis repeatable, inspectable, and usable.',
     ],
     focus: [
+      'SK On Company Work',
+      'Manufacturing AI',
       'AI Platform',
-      'LLM Orchestration',
-      'Evidence-backed Workflows',
-      'Korean-first UX',
+      'Workflow Reuse',
+      'Non-developer UX',
+    ],
+    researchFoundation: [
+      'M.S. in Mechanical Engineering, Sungkyunkwan University, 2020–2022; GPA 4.0/4.5.',
+      'Developed a DED real-time anomaly-monitoring workflow using image preprocessing, STFT and HHT, and 2D-CNN and M2D-CNN models; reduced the analysis cycle from one week to one day, while the HHT-based approach improved accuracy by approximately 20%.',
+      'Built a DED multi-defect diagnosis pipeline using 40 image features, selected 10 features with ANOVA and t-tests, compared ANN, KNN, and SVM classifiers, and achieved 92.7% accuracy with the best SVM model.',
+      'This research shaped the On-Platform emphasis on validated analysis, evidence, traceability, and reusable workflows.',
     ],
     note:
-      'Public-safe summary based on synthetic scenarios. No confidential manufacturing data or internal system details included.',
+      'Company work at SK On, summarized with sanitized synthetic scenarios. No confidential manufacturing data, process names, internal system names, private screenshots, or company-confidential metrics are included.',
   },
   {
     id: 'science-agent',
@@ -665,6 +675,9 @@ function ThreadMain({ thread }: { thread: PortfolioThread }) {
         </div>
 
         <MessageBlock label="context" value={thread.context} />
+        {thread.researchFoundation?.length ? (
+          <ListBlock label="research foundation" items={thread.researchFoundation} />
+        ) : null}
         <div className="grid gap-4 lg:grid-cols-2">
           <ListBlock label="what I built" items={thread.built} />
           <ListBlock label="DX signal" items={thread.dxSignal} />
