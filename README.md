@@ -6,6 +6,8 @@ Junho is a Manufacturing AI Platform Engineer at SK On, Codex Ambassador, and Ps
 
 The interface is structured as a Codex-inspired thread workspace so interviewers can scan Junho's projects by topic.
 
+Live site: https://generoustandard.github.io/Portfolio/
+
 ## Career Narrative
 
 - Graduate manufacturing AI research: experimental data, image and time-series processing, statistical validation, machine learning, and deep learning.
